@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="de">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Vossanto</title>
+
+		<link rel="stylesheet" href="../reveal/css/reveal.css">
+		<link rel="stylesheet" href="../reveal/css/theme/serif.css">
+
+      <!-- adjustments for serif.css -->
+      <link rel="stylesheet" href="custom.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal/css/print/pdf.css' : '../reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+			    <section data-markdown="" data-separator="^\n---\n" data-separator-vertical="^\n--\n" data-charset="utf-8">
+<script type="text/template">
+
+
+# »The Helmut Kohl of Spread«<!-- .element: style="font-size:3em;" -->
+
+## Extracting Vossian Antonomasia from Large Newspaper Corpora
+
+<br />
+[Robert Jäschke](https://www.sheffield.ac.uk/is/staff/jaeschke)¹ · [Jannik Strötgen](https://people.mpi-inf.mpg.de/~jstroetge/)² · [Elena Krotova](http://hse-ru.academia.edu/ElenaKrotova)³ · [Frank Fischer](https://www.hse.ru/en/org/persons/182492735)⁴
+
+<br />
+¹ University of Sheffield<br />
+² Max-Planck-Institut für Informatik, Saarbrücken<br />
+³ Russische Akademie der Wissenschaften, Moskau<br />
+⁴ NRU Higher School of Economics, Moskau<!-- .element: style="font-size:0.75em;" -->
+
+<br />
+April 10, 2017
+
+---
+
+## Agenda
+
+<br />
+1. [Introduction](#/2)
+2. [State of the Art](#/3)
+3. [Corpora and Methods](#/4)
+4. [Results](#/5)
+5. [Bibliography](#/6)
+
+---
+
+# 1. Introduction
+
+## What is a Vossian Antonomasia? (1/2)
+
+![portrait of Gerhard Johannes Vossius; source: Wikimedia Commons](images/vossius.jpg)<!-- .element width="250px" -->
+
+* first described as separate phenomenon by Gerhard Johannes Vossius (1577–1649)
+* see [corresponding chapter](https://books.google.com/books?id=q2OvgoX6ar8C&pg=PA193) in
+*Tractatus philologici de rhetorica, de poëtica, de artium et scientiarum […]*, 1697 (first 1606) – image source: <a href="https://commons.wikimedia.org/wiki/File:Gerardus_Johannes_Vossius_(1577-1649),_by_Anonymous.jpg">Wikimedia Commons</a>
+
+--
+
+## What is a Vossian Antonomasia? (2/2)
+
+
+<br/>
+*stylistic device* to assign a specific *characteristic to one
+person by naming another*, typically more famous person
+
+<br />
+»Die ›Vossianische Antonomasie‹ ist […] die Setzung eines Eigennamens für ein Appellativ: der Träger des Eigennamens ist eine Person oder Sache, die in Geschichte oder Mythologie eine hervorragende Realisierung der mit dem Appellativ bezeichneten Eigenschaft war. Die hervorragende Person oder Sache ist der Typus […], der sich in der bezeichneten neuen Realisierung wiederfindet. Meist wird der Typus durch <u>ein untypologisches, aktualisierendes Signal</u> (Pronomen, Adjektiv, Genitiv), in jedem Falle durch den (sprachlichen oder situationsmäßigen) Kontext aus der typologischen Ferne in die zu bezeichnende Gegenwart geholt […].«
+
+<!-- 
+»The ›Vossian Antonomasia‹ is […] the usage of a proper name for an
+appelative: the owner of the proper name is a person or thing which in
+history or mythology was an outstanding implementation of the property
+signified with the appelative. The outstanding person or thing is the
+type […] which can be found again in the new implementation. Often the
+typus is 
+-->
+
+<br />
+Heinrich Lausberg: *Handbuch der literarischen Rhetorik. Eine
+Grundlegung der Literaturwissenschaft.* Band 2. München: Hueber
+1960. §581, p. 301. [[this page in the 3. Edition 1990 at Google
+Books](https://books.google.com/books?id=IR8ru0joFKcC&pg=PA301);
+markup by us]
+
+--
+
+## Examples (1/4)
+
+<br />
+![Jim Koch, the Steve Jobs of beer](images/the-steve-jobs-of-beer_theatlantic-com.jpg)<!-- .element width="640px" -->
+
+<br />
+= Jim Koch (Source: [theatlantic.com](https://www.theatlantic.com/magazine/archive/2014/11/the-steve-jobs-of-beer/380790/), 2014)
+
+--
+
+## Examples (2/4)
+
+<br />
+![Ramazan Bashardost, the Don Quixote of Afghanistan](images/the-don-quixote-of-afghanistan.jpg)<!-- .element width="640px" -->
+
+<br />
+= Ramazan Bashardost (Source: [time.com](http://content.time.com/time/world/article/0,8599,1916541,00.html), 2009)
+
+
+--
+
+## Examples (3/4)
+
+<br />
+![James Niehues, the Michelangelo of Snow](images/the-michelangelo-of-snow.jpg)<!-- .element width="640px" -->
+
+
+<br />
+= James Niehues (Source: [denverpost.com](http://www.denverpost.com/2016/12/14/michelangelo-of-snow-mapping/), 2016)
+
+
+--
+
+## Examples (4/4)
+
+<br />
+![Nick Galis, the Michael Jordan of Greece](images/the-michael-jordan-of-greece.jpg)<!-- .element width="640px" -->
+
+
+<br />
+= Nick Galis (Source: [greekreporter.com](http://usa.greekreporter.com/2013/05/15/galis-is-the-michael-jordan-of-greece/), 2013)
+
+
+---
+
+# 2. State of the Art
+
+<br />
+## Conceptual classification
+
+* sub-phenomenon of the classic ›antonomasia‹
+* internationally the term ›Vossian Antonomasia‹ is barely used, instead,
+e.g., distinction between antonomasia1 and antonomasia2: metonymic
+vs. metaphorical antonomasia (Vossanto would be a special case of
+antonomasia2 in case of »comparisons with paragons from other spheres of culture«: »Lyotard is a pope of postmodernism, Bush is no Demosthenes; and we can buy the Cadillac of vacuum cleaners.«, cf. Holmqvist/Płuciennik 2010)
+
+--
+
+## Essence and function
+
+* <span style="color:red;">source</span> → <span style="color:green;">modifier/metaphor</span> → <span style="color:blue;">target</span> (cf. Bergien 2013)
+* <span style="color:blue;">Nick Galis</span>, the <span style="color:red;">Michael Jordan</span> of <span style="color:green;">Greece</span>
+* entities can appear both as source and target, e.g., B. Obama
+(ibid.): until 2011 he was mostly target and later more and more became
+source
+* one function of Vossanto is inculturation, i.e., we elevate the
+target by referencing the source and the updating signal: »If we refer to Leonard Cohen as the Lord Byron of rock music, we treat a popular singer as a famous romantic poet elevating him and popular songs to a higher level of culture.« (Holmqvist/Płuciennik 2010)
+* ibid. they say: **»Antonomasia is essentially humanistic and
+anti-computational.«** – i.e., one can not understand a Vossanto without cultural background knowledge
+* overall, Vossanto oscillates between explanation and ironic comment
+<!--
+; die Erläuterungsfunktion kann aber auch negative Effekte haben: --
+  --»Nichts ist banaler als dieses ewige ›Ute Lemper ist die Marlene --
+  --Dietrich von heute‹, ›Hansjörg Felmy war der deutsche Humphrey --
+  --Bogart‹. Das stimmt nie.« (Fritz J. Raddatz, [*Die Zeit* --
+  --44/2007](http://www.zeit.de/2007/44/L-Augustin/komplettansicht)) -->
+
+---
+
+# 3. Corpora and Methods
+
+--
+
+## Analysed corpora
+
+<br />
+
+| | English corpus | German corpus |
+|-:|:----------------:|:-----------------:|
+| title | »New York Times« | »Die Zeit« |
+| type | daily | weekly |
+| time range | 1987–2007 | 1995–2011 |
+| number of articles | 1,854,726 | 126,702 |
+| mean monthly articles | 7,540 | 621 |
+
+--
+
+## *New York Times* corpus (1/2)
+
+<br />
+* extraction of full text from XML (Sandhaus 2008)
+* processing using  NLTK (Bird/Loper/Klein 2009):
+ 	* tokenisation into sentences, POS
+ 	* NER (persons, locations, organisations)
+* identification of typical Vossanto patterns
+* simplified example (* indicates the three elements of a
+  Vossanto):
+
+```
+\((PERSON|ORGANIZATION|GPE) *\) (is|has) (often|sometimes)? (been)? (called)?
+the \(PERSON|ORGANIZATION|GPE) *\) (of|among|from) \((PERSON|ORGANIZATION|GPE) *\)
+```<!-- .element: style="font-size:0.75em;" -->
+
+--
+
+## *New York Times* corpus (2/2)
+
+<br />
+* extraction of  10,744 candidates (on average  512 per year)
+* two-stage manual verification
+* restriction to Vossantos with at least one individual (person/animal/figure)
+* omission of locations, companies, and groups of individuals
+  (Vossantos like »Algarve, the Riviera of Portugal« or »Pepsi is the
+  Nike of soft drinks« justify a separate analysis)
+* result: 246 Vossantos (2,3%; no precision value since we did not consider all  Vossantos): [overview on GitHub](https://github.com/weltliteratur/vossanto/blob/master/vossanto-NYT-only-individuals.md)
+* compared to the complete corpus, Vossantos are a relatively rare
+  phenomen, their distribution over the years is quite regular
+
+--
+
+## Distribution
+
+### *New York Times* corpus
+
+![New York Times Corpus](images/vossantos_nyt.svg)<!-- .element width="640px" -->
+
+--
+
+## *Die Zeit* corpus (1/2)
+
+<br />
+* extraction of full texts (incl. headings)
+* POS/NER using Stanford CoreNLP (incl. training data for German, cf. Faruqui and Pado 2010)
+* analysis of all texts on three levels:
+	* word
+	* POS
+	* NER
+* identification of typical Vossanto patterns using regular expressions
+* simplified example for an extraction rule:
+
+```
+eine Art PERSON (der|des) (ADJECTIVE)? NOUN
+```<!-- .element: style="font-size:0.75em;" -->
+
+--
+
+## *Die Zeit* corpus (2/2)
+
+<br />
+* from 1,456 Vossanto candidates 225 were manually identified as Vossantos with the desired properties  (at least one individual as source or target)
+* this corresponds to 15.4%  (again, no precision value): [overview on GitHub](https://github.com/weltliteratur/vossanto/blob/master/vossanto-ZEIT.md)
+* false positives include household expressions like »der deutsche
+   Michel« or »der Anton aus Tirol« as well as phrases like »der
+   Berliner Klaus Wowereit«, »der Thomas Mann der Josephs-Romane« and
+   »der Franz Müntefering des Jahres 2000«, i.e., phrases, which
+   grammatically conform to our defined extraction patterns.
+* another problem of this extraction method: currently only phrases
+  which contain a person that has been tagged by Stanford NER are
+  recognised
+
+--
+
+## Distribution
+
+### *Die Zeit* corpus
+
+![Die Zeit Corpus](images/vossantos_zeit.svg)<!-- .element width="640px" -->
+
+---
+
+# 4. Results
+
+--
+
+## Most frequent Vossantos *New York Times* corpus
+
+<br />
+
+| article count | *source* |
+|:------:|:------------------------:|
+| 6 | Michael Jordan |
+| 5 | Michelangelo |
+| 4 | Babe Ruth |
+| 3 | Don Quixote |
+| 3 | Elvis |
+| 3 | Neil Young |
+| 3 | Rodney Dangerfield |
+| 3 | Zelig |
+
+--
+
+## *New York Times* corpus: »the Michael Jordan of«
+
+<br />
+
+* »Romario is the **Michael Jordan** of soccer and Bebeto is the Magic Johnson of soccer« ([1994](http://www.nytimes.com/1994/07/05/sports/world-cup-94-point-proved-hearts-heavy-it-s-time-to-go-home.html))
+* »Bonfire, the **Michael Jordan** of dressage horses« ([1998](http://www.nytimes.com/1998/11/05/sports/horse-show-national-thrives-again-with-garden-as-setting.html))
+* »Brian Foster, the **Michael Jordan** of BMX racing« ([1998](http://www.nytimes.com/1998/12/27/sports/1998-in-review-champions-all-and-all-in-anonymity.html))
+* »The stunt biker Dave Mirra, the **Michael Jordan** of the dirt set« ([2000](http://www.nytimes.com/2000/08/13/weekinreview/this-is-extremely-sporting.html))
+* »Cynthia Cooper is the **Michael Jordan**, the Larry Bird, the Magic Johnson of this league« ([2000](http://www.nytimes.com/2000/08/28/sports/sports-of-the-times-cooper-leaving-behind-a-legacy-of-greatness.html))
+* »McNabb has been called the **Michael Jordan** of the National Football League« ([2001](http://www.nytimes.com/2001/01/08/sports/on-pro-football-mcnabb-on-the-run-from-start-to-finish.html))
+
+<br />
+*
+
+<br />
+Barack Obama: »There is a reason you call someone the Michael Jordan of [something]. They know what you’re talking about because Michael Jordan is the Michael Jordan of greatness. He is the definition of somebody so good at what they do that everybody recognizes it. That’s pretty rare.« ([Washington Post, 22.11.2016](https://wapo.st/2fD96iF))
+
+--
+
+## *NYT* corpus: distribution of Vossantos in rubrics
+
+<br />
+
+| rubric | article count |
+|:------:|:--------------:|
+| Arts | 78 |
+| Sports | 57 |
+| New York and Region | 28 |
+| Movies | 25 |
+| Books | 24 |
+| Style | 21 |
+| Magazine | 13 |
+| Business | 12 |
+| Opinion | 11 |
+| U.S. | 10 |
+| Theater | 10 |
+
+--
+
+## Most frequent vossantos *Die Zeit* corpus
+
+<br />
+
+| article count | *source* |
+|:------:|:------------------------:|
+| 9 | Robin Hood |
+| 6 | Bill Gates |
+| 4 | Franz Beckenbauer |
+| 3 | Daniel Düsentrieb |
+| 3 | Heinz Rühmann |
+| 3 | James Dean |
+| 3 | Jesus Christus |
+| 3 | Norbert Blüm |
+| 3 | Willy Brandt |
+
+--
+
+## *Die Zeit* corpus: »der Robin Hood der/des«
+
+<br />
+
+* »Rainer Metz ist für Bank- und Sparkassenvorstände so etwas wie der **Robin Hood** des Kreditgewerbes.« ([1997](http://www.zeit.de/1997/06/Kleinkrieg_mit_den_Banken/komplettansicht))
+* »Krause, der Streiter für eine andere CDU, der **Robin Hood** des Ostens.« ([1998](http://www.zeit.de/1998/15/Robin_Hood_des_Ostens/komplettansicht))
+* »In der Presse ist Bové der **Robin Hood** der entrechteten Schafhirten, der listige Asterix, der es mit den übermächtigen Römern aufnimmt, der französische David gegen den amerikanischen Goliath.« ([2000](http://www.zeit.de/2000/28/Kaempfer_an_globaler_Front/komplettansicht))
+* »Erschossen: James, der **Robin Hood** des Wilden Westens« ([2000](http://www.zeit.de/2000/14/38983/komplettansicht))
+* »Die Karriere eines edlen Wilden, ein **Robin Hood** aus Australien, erzählt von ihm selbst« ([2002](http://www.zeit.de/2002/30/Die_ZEIT-Liste/komplettansicht))
+* »Tatsächlich lebte Schinderhannes nach seiner Hinrichtung fort, und zwar nicht als der, der er gewesen war, sondern wie man sich ihn imaginierte: als ein **Robin Hood** des Hunsrück, der den Reichen genommen hatte, um den Armen zu geben.« ([2003](http://www.zeit.de/2003/47/A-Schinderhannes_/komplettansicht))
+* »›I speak for shoemakers, I also speak for mechanics‹, rappt er in einem anderen Titel – Ruggedman, der **Robin Hood** des Afrorap.« ([2006](http://www.zeit.de/2006/05/Lagos/komplettansicht))
+* »Wie ein **Robin Hood** der Kranken und Verunsicherten, der sich über jegliche Kosten- und Nutzenargumente der Krankenkassen hinwegsetzt, fordert er auch ›flächendeckende Grippeimpfungen‹ und einen ›großzügigen Einsatz der neuen Grippemedikamente‹.« ([2006](http://www.zeit.de/2006/49/Schleichwerbung/komplettansicht))
+* »Für seine Bewunderer ist Julian Assange der **Robin Hood** des Internets.« ([2010](http://www.zeit.de/2010/51/P-Zeitgeist))
+
+--
+
+## *Die Zeit* corpus: distribution of Vossantos in rubrics
+
+<br />
+
+| rubric | article count |
+|:------:|:--------------:|
+| Feuilleton + Literatur | 76 |
+| Politik | 54 |
+| Wirtschaft | 23 |
+| Leben | 21 |
+| Dossier | 8 |
+| Reise | 7 |
+| Wissen | 7 |
+| Modernes Leben | 5 |
+| Chancen | 3 |
+| Wochenschau | 2 |
+| ZEIT Geschichte | 1 |
+
+--
+
+## Animals as *target*
+
+* »A rugged cat, in a fluffy sort of way, **[Morris](https://en.wikipedia.org/wiki/Morris_the_Cat)** has been the Clark Cable of the catnip crowd.« ([1988](http://www.nytimes.com/1988/05/29/business/luring-56-million-ailurophiles.html?pagewanted=all))
+* »**[Sea Hero](https://en.wikipedia.org/wiki/Sea_Hero)** is the Bobo Holloman of racing« ([1993](http://www.nytimes.com/1993/08/18/sports/sports-of-the-times-the-derby-is-history-to-sea-hero.html))
+* »**<a href="https://en.wikipedia.org/wiki/Bonfire_(horse)">Bonfire</a>**, the Michael Jordan of dressage horses« ([1998](http://www.nytimes.com/1998/11/05/sports/horse-show-national-thrives-again-with-garden-as-setting.html))
+
+<br />
+## Plush toys as *source*
+
+* »Jean-Claude Van Damme, the **[Energizer Bunny](https://en.wikipedia.org/wiki/Energizer_Bunny)** of action stars, just never stops trying.« ([1994](http://www.nytimes.com/1994/09/11/movies/the-annotated-calendar-film.html))
+
+--
+
+## References that can not be individualised
+
+<br />
+* »the [God, King, Queen, Satan, Emperor, Oracle, Shogun, Czar, Sultan, Buddha] of«
+
+<br />
+<br />
+
+## Mythologic und fictitious figures
+
+<br />
+* »the [Santa Claus, Midas, Godzilla, Pied Piper, Energizer Bunny, Jupiter, Icarus] of«
+
+--
+
+## Feminisations
+
+<br />
+* Adele Schopenhauer, »eine Art **Donna Quichotta** des Weimarer
+  Musenvereins«
+  ([*Die Zeit* 18/2002](http://www.zeit.de/2002/18/Gefuehlskultur_im_Hause_Schopenhauer/komplettansicht))
+  (»a kind of **Donna Quichotta** of the Weimar muse club«)
+* »Tracey [Emin], die **Donna Giovanna** der britischen
+  Gegenwartskunst, scheu wie ein Reh angeblich, […]«
+  ([*Die Zeit* 9/2006](http://www.zeit.de/2006/09/L-Euro_Tageb_Lond_))
+  (»Tracey [Emin] the **Donna Giovanna** of British contemporary art,
+  supposedly shy like a deer«)
+* »Kati Witt ist jetzt eine **Franziska Beckenbauer** der Münchner
+  Olympiabewerbung.«
+  ([*Die Zeit* 39/2010](http://www.zeit.de/2010/39/Katarina-Witt-Olympia-Muenchen/komplettansicht))
+  (»Kati Witt is now a **Franziska Beckenbauer** of the Munich Olympia
+  candidature«)
+
+--
+
+## Oscillation between *target* and *source*
+
+<br />
+* »**Even [Michael] Jordan isn’t always Jordan.** The last time he retired, to play baseball, the Chicago Bulls’ owner, Jerry Reinsdorf, called him the **Babe Ruth** of basketball.« ([NYT, 17.01.1999](http://www.nytimes.com/1999/01/17/weekinreview/ideas-trends-they-re-sort-of-like-mike.html))
+* Bergien 2013 presents Barack Obama as an example that since 2011
+  appears less frequent as a *target*: »the name Obama has changed
+  from a target into a source name« (p. 23)
+* Oscillation of named entities between *target* and *source* is worth
+  a more in-depth analysis
+
+--
+
+## Individual person/figure as source, firm/association/band/location as target
+
+<br />
+* »**Sturm, Ruger** is the **Benedict Arnold** of the gun industry,« said Aaron S. Zelman, owner of the Patriot Distribution Company, a Milwaukee-based concern that sells a semiautomatic pistol as well as products such as assault vests and tear gas.« ([1989](http://www.nytimes.com/1989/07/14/us/gun-import-ban-enriches-small-us-arms-makers.html?pagewanted=all))
+* »Also on hand is **Aerosmith**, the **Dorian Gray** of rock bands, to serve the same purpose Alice Cooper did in the first film.« ([1993](http://www.nytimes.com/1993/12/10/movies/review-film-it-s-wayne-and-garth-schwinging-once-again.html))
+* »**Bolt Beranek & Newman** has been the **Forrest Gump** of high technology, […]« ([1995](http://www.nytimes.com/1995/07/17/business/innovator-is-leaving-the-shadows-for-the-limelight.html))
+* »For most of this century, the **Hudson** has been the **John Barrymore** of rivers, noble in profile but a sorry wreck.« ([1996](http://www.nytimes.com/1996/07/05/arts/happy-trails-along-the-hudson.html))
+* »the **National Collegiate Athletic Association**, the **Kenneth Starr** of sports« ([1998](http://www.nytimes.com/1998/04/05/sports/backtalk-a-few-parting-shots-for-the-rangers-brass.html))
+
+<br /><br />
+… and of course:
+
+--
+
+![Nutella ist der Helmut Kohl unter den Brotaufstrichen.](images/der-helmut-kohl-unter-den-brotaufstrichen_der-freitag_35-2011.jpg)<!-- .element width="720px" -->
+
+»Nutella is the Helmut Kohl of spread«
+
+([Ada Blitzkrieg](https://twitter.com/bangpowwww) in [*der Freitag* 35/2011](https://www.freitag.de/autoren/der-freitag/schmeckt-das-denn))
+
+--
+
+## Wrap-up and status of the project
+
+<br />
+* current work is exploratory, optimisation of precision & recall next steps
+* despite gaps and errors in the extraction process some properties of
+  the stylistic device ›Vossian Antonomasia‹ could be analysed
+  much better than with the prior quite selective collection of samples
+* Vossanto as a special case of antonomasia can be broken down into several
+  sub-cases, a very effective stylistic device
+* difficult evaluation due to lack of gold standard annotations
+* next steps: improvement of extraction methods, better precision,
+  more languages and corpora
+
+--
+
+## Challenges
+
+- the German Gerhard Schröder / the German Margaret Thatcher
+- cultural differences – who is a good source
+   - e.g., Bill Gates in German not in US texts!
+- NER on older texts, with unknown entities
+- OCR errors prevent NLP
+- rareness and cultural depth impede creation of gold standard dataset
+
+--
+
+## Ideas for improvement
+
+- analysing frequent POS/NER patterns
+- testing word2vec ("Michael Jordan for basketball what X for football")
+- handling special cases like "X is the COUNTRY equivalent of Y"
+- precision
+   - surprise - which source and target do not mate?
+   - ranking candidates by frequency of source terms
+   - restricting POS/NER patterns
+- recall
+   - extending patterns to support new cases
+   - including headings
+
+<br />
+### Thanks to
+
+Michael Angele, Angelika Bergien, Ada Blitzkrieg, Mathias Göbel,<br />
+Stefan Heßbrüggen-Walter, Arne Janning, Marc Reichwein
+
+
+---
+
+## 5. Bibliography
+
+* Bergien, A.: Names as frames in current-day media discourse. In: Felecan, O. (Hg.): Name and Naming. Proceedings of the second international conference on onomastics. Cluj-Napoca: Editura Mega 2013. S. 19–27.
+* Bird, S.; Klein, E.; Loper, E.: [Natural Language Processing with Python.](http://www.nltk.org/book/) O’Reilly Media Inc. 2009.
+* Faruqui, M.; Pado, S.: [Training and Evaluating a German Named Entity Recognizer with Semantic Generalization.](http://www.manaalfaruqui.com/papers/konvens10_faruqui.pdf) In: Proceedings of Konvens 2010, Saarbrücken, Germany.
+* Fischer, F.; Wälzholz, J.: [Jeder kann Napoleon sein. Vossianische Antonomasie: Eine Stilkunde.](http://www.umblaetterer.de/wp-content/uploads/2014/12/vossanto_fas.png) In: Frankfurter Allgemeine Sonntagszeitung, Nr. 51 (21. Dezember 2014), S. 34.
+* Holmqvist K.; Płuciennik J.: Princess antonomasia and the truth: Two types of metonymic relations. In: Burkhardt, A.; Nerlich, B. (Hg.): Tropical Truth(s). The Epistemology of Metaphor and Other Tropes. Berlin/New York: De Gruyter 2010. S. 373–381. DOI: [10.1515/9783110230215](http://doi.org/10.1515/9783110230215).
+* Lausberg, H.: Handbuch der literarischen Rhetorik. Eine Grundlegung der Literaturwissenschaft. Band 2. München: Hueber 1960.
+* Sandhaus, E.: The New York Times Annotated Corpus LDC2008T19. DVD. Philadelphia: Linguistic Data Consortium, 2008.
+* Arbeitsrepositorium: [github.com/weltliteratur/vossanto](https://github.com/weltliteratur/vossanto)
+
+</script>
+			    </section>
+			</div>
+		</div>
+
+<!--
+Halde: hier unbenutzter Code
+
+<br />
+### *New York Times*-Korpus
+
+| 1987 | 1988 | 1989 | 1990 | 1991 | 1992 | 1993 | 1994 | 1995 | 1996 | 1997 | 1998 | 1999 | 2000 | 2001 | 2002 | 2003 | 2004 | 2005 | 2006 | 2007 | gesamt |
+|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:------:|
+| 4 | 9 | 6 | 10 | 8 | 12 | 14 | 15 | 7 | 15 | 11 | 17 | 12 | 14 | 14 | 15 | 19 | 11 | 16 | 12 | 5 | 246 |
+<!-- .element: style="font-size:0.6em;" ->
+
+<br />
+### *Die Zeit*-Korpus
+
+| 1995 | 1996 | 1997 | 1998 | 1999 | 2000 | 2001 | 2002 | 2003 | 2004 | 2005 | 2006 | 2007 | 2008 | 2009 | 2010 | 2011 | gesamt |
+|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:------:|
+| 9 | 12 | 13 | 10 | 16 | 13 | 16 | 12 | 12 | 12 | 19 | 21 | 16 | 8 | 10 | 17 | 9 | 225 |
+<!-- .element: style="font-size:0.6em;" ->
+
+--
+
+
+-->
+
+		
+		<script src="../reveal/lib/js/head.min.js"></script>
+		<script src="../reveal/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal/plugin/markdown/marked.js' },
+					{ src: '../reveal/plugin/markdown/markdown.js' },
+					{ src: '../reveal/plugin/notes/notes.js', async: true },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
