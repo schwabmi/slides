@@ -159,7 +159,7 @@ anti-computational.«** – i.e., one can not understand a Vossanto without cult
 
 --
 
-## *New York Times* corpus (1/2)
+## Method (1/2)
 
 <br />
 * extraction of full text from XML (Sandhaus 2008)
@@ -177,7 +177,57 @@ the \(PERSON|ORGANIZATION|GPE) *\) (of|among|from) \((PERSON|ORGANIZATION|GPE) *
 
 --
 
-## *New York Times* corpus (2/2)
+## Method (2/2)
+
+<pre style="font-size=-6pt">
+vossanto_re_str = """
+(                                         # an entity
+  \((PERSON|ORGANIZATION|GPE)\ (?P<x10>[^)]*?)\)
+  (\ \((PERSON|ORGANIZATION)\ (?P<x11>[^)]*?)\))?
+  (\ (?P<x12>[^/()]*?)/NNP?)?
+)
+
+\ 
+(                                         # is 
+(is|has|are)/VBZ (\ (often|sometimes)/RB)? (\ been/VBN)? (\ called/VBN)?|
+-/:|
+,/,
+)
+
+\ the/DT                                  # the
+
+\ 
+(                                         # entity
+  \((PERSON|ORGANIZATION|GPE)\ (?P<y11>[^)]*?)\) 
+  (\ (?P<y12>[^/()]*?)/NNP?)?
+|
+  (?P<y31>[^/()]*?)/NNP
+)
+
+\ (of|among|from)/IN                      # of
+
+\ (                                       # another entity
+  ((?P<z10>[^/()]*?)/(CD|DT|JJ|IN))? 
+  (?P<z11>[^/()]*?)/(NNS?|DT)
+  (\ (?P<z12>[^/()]*?)/(IN|JJ))? 
+  (\ (?P<z13>[^/()]*?)/NNS?)?
+|
+  (?P<z31>[^/()]*?)/NNP
+|
+  ((?P<z40>[^/()]*?)/(CD|DT|JJ)\ )? 
+  \((ORGANIZATION|PERSON|GPE)\ (?P<z41>[^)]*?)\)
+  (\ (?P<z43>[^/()]*?)/NN[SP]?)?
+)
+
+\ [\.,-]/[\.,:]
+"""
+</pre>
+
+
+
+--
+
+## Results (1/3)
 
 <br />
 * extraction of  10,744 candidates (on average  512 per year)
