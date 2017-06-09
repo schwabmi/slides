@@ -416,7 +416,7 @@ Barack Obama: »There is a reason you call someone the Michael Jordan of [someth
 
 ## Method (2/3)
 
-- idea: use Wikidata  labels and aliases of all instances of "human" (2,801,931 items)
+- idea: use Wikidata  labels and aliases of [all instances of "human"](https://query.wikidata.org/#%20%20SELECT%20%3Fitem%20%3FitemLabel%20WHERE%0A%20%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP31%20wd%3AQ5%20.%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20instance%20of%20human%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20...%20include%20the%20labels%0A%20%20%20%20%20%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%0A%20%20%20%20%7D%0A%20%20%7D%0A) (2,801,931 items)
 - match everything between *"the"* and *"of"* against list (preferring smaller ids)
 - result for 1987: 2,880 candidates with 371 different sources:
 
@@ -437,7 +437,7 @@ Barack Obama: »There is a reason you call someone the Michael Jordan of [someth
 
 ## Method (3/3)
 
-- idea: iteratively create a blacklist of source labels which are ambiguous 
+- idea: iteratively create a [blacklist of source labels](https://github.com/weltliteratur/vossanto/blob/master/theof/blacklist.tsv) which are ambiguous 
 - ignore candidates where source appears in blacklist
 - result for 1987: 104 candidates with 88 different sources:
 
@@ -593,6 +593,11 @@ grammatical variant</span>
 "When we introduced Word in October 1983, in its first incarnation it
 was dubbed *the Marquis de Sade of* word processors, which was not
 altogether unfair." (NYT 26/09/1993)
+
+image sources:
+[Wikimedia
+Commons](https://en.wikipedia.org/wiki/Marquis_de_Sade#/media/File:Marquis_de_Sade_portrait.jpg),
+[Nathan Toasty](http://toastytech.com/guis/word115.html)
 
 --
 
