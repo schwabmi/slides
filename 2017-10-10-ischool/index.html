@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="de">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>The Helmut Kohl of Chocolate Spreads</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/serif.css">
+
+      <!-- adjustments for serif.css -->
+      <link rel="stylesheet" href="custom.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+			    <section data-markdown="" data-separator="^\n---\n" data-separator-vertical="^\n--\n" data-charset="utf-8">
+<script type="text/template">
+
+
+# »The Helmut Kohl of Chocolate Spreads«<!-- .element: style="font-size:3em;" -->
+
+## Extracting Vossian Antonomasia from Large Newspaper Corpora
+
+<br />
+[Robert Jäschke](https://www.sheffield.ac.uk/is/staff/jaeschke)¹ · [Frank Fischer](https://www.hse.ru/en/org/persons/182492735)²
+
+<br />
+¹ Humboldt-Universität zu Berlin, Germany &amp; University of Sheffield, UK<br />
+² NRU Higher School of Economics, Moskau, Russia<!-- .element: style="font-size:0.75em;" -->
+
+<br />
+October 10, 2017
+
+---
+
+## Agenda
+
+<br />
+1. [Introduction](#/2)
+2. [Approach NLP+NER](#/3)
+3. [Approach "NatAdj"](#/4)
+4. [Approach "TheOf"](#/5)
+5. [Discussion](#/6)
+
+---
+
+# 1. Introduction
+
+--
+
+## What is a Vossian Antonomasia?
+
+![portrait of Gerhard Johannes Vossius; source: Wikimedia Commons](images/vossius.jpg)<!-- .element width="250px" -->
+
+* first described as separate phenomenon by Gerhard Johannes Vossius (1577–1649)
+* *stylistic device* to assign a specific characteristic to one person by naming another, typically more famous person
+
+image source: <a href="https://commons.wikimedia.org/wiki/File:Gerardus_Johannes_Vossius_(1577-1649),_by_Anonymous.jpg">Wikimedia Commons</a>
+
+--
+
+## Examples (1/4)
+
+<br />
+![Jim Koch, the Steve Jobs of beer](images/the-steve-jobs-of-beer_theatlantic-com.jpg)<!-- .element width="640px" -->
+
+<br />
+= Jim Koch (Source: [theatlantic.com](https://www.theatlantic.com/magazine/archive/2014/11/the-steve-jobs-of-beer/380790/), 2014)
+
+--
+
+## Examples (2/4)
+
+<br />
+![Ramazan Bashardost, the Don Quixote of Afghanistan](images/the-don-quixote-of-afghanistan.jpg)<!-- .element width="640px" -->
+
+<br />
+= Ramazan Bashardost (Source: [time.com](http://content.time.com/time/world/article/0,8599,1916541,00.html), 2009)
+
+
+--
+
+## Examples (3/4)
+
+<br />
+![James Niehues, the Michelangelo of Snow](images/the-michelangelo-of-snow.jpg)<!-- .element width="640px" -->
+
+
+<br />
+= James Niehues (Source: [denverpost.com](http://www.denverpost.com/2016/12/14/michelangelo-of-snow-mapping/), 2016)
+
+
+--
+
+## Examples (4/4)
+
+<br />
+![Nick Galis, the Michael Jordan of Greece](images/the-michael-jordan-of-greece.jpg)<!-- .element width="640px" -->
+
+
+<br />
+= Nick Galis (Source: [greekreporter.com](http://usa.greekreporter.com/2013/05/15/galis-is-the-michael-jordan-of-greece/), 2013)
+
+
+--
+
+## Terminology
+
+- sub-phenomenon of the classic ›Antonomasia‹
+   - kind of metonomy
+   - an epithet or phrase takes the place of a proper name
+- term ›Vossian Antonomasia‹ not used internationally
+- instead: differentation between Antonomasia1 and Antonomasia2:<br/>
+  metonymic vs. metaphorical antonomasia
+- special case of Antonomasia2 – »comparisons with paragons from other
+  spheres of culture«:
+  > »Lyotard is a pope of postmodernism, Bush is no
+  > Demosthenes; and we can buy the Cadillac of vacuum cleaners.«
+  (Holmqvist/Płuciennik 2010)
+- we abbreviate ›Vossian Antonomasia‹ as **Vossanto**
+  
+--
+
+## Essence and function
+
+* <span style="color:red;">source</span> → <span
+  style="color:green;">modifier/metaphor</span> → <span
+  style="color:blue;">target</span> (cf. Bergien 2013)
+* <span style="color:blue;">Nick Galis</span>, the <span
+  style="color:red;">Michael Jordan</span> of <span
+  style="color:green;">Greece</span>
+* entities can appear both as <span style="color:red;">source</span>
+  and <span style="color:blue;">target</span>, e.g., B. Obama (ibid.):
+  until 2011 he was mostly <span style="color:blue;">target</span> and
+  later more and more became <span style="color:red;">source</span>
+* one function of Vossanto is inculturation, i.e., we elevate the
+  <span style="color:blue;">target</span> by referencing the <span
+  style="color:red;">source</span> and the <span
+  style="color:green;">modifier</span> (an updating signal):
+  > »If we
+  > refer to Leonard Cohen as the Lord Byron of rock music, we treat a
+  > popular singer as a famous romantic poet elevating him and popular
+  > songs to a higher level of culture.«
+  (Holmqvist/Płuciennik 2010)
+* ibid. they say: **»Antonomasia is essentially humanistic and
+  anti-computational.«** – i.e., one can not understand a Vossanto
+  without cultural background knowledge
+* overall, Vossanto oscillates between explanation and ironic comment
+<!--
+; die Erläuterungsfunktion kann aber auch negative Effekte haben: --
+  --»Nichts ist banaler als dieses ewige ›Ute Lemper ist die Marlene --
+  --Dietrich von heute‹, ›Hansjörg Felmy war der deutsche Humphrey --
+  --Bogart‹. Das stimmt nie.« (Fritz J. Raddatz, [*Die Zeit* --
+  --44/2007](http://www.zeit.de/2007/44/L-Augustin/komplettansicht)) -->
+
+--
+
+## Corpus
+
+<br />
+
+| | »New York Times« |
+|-:|:----------------:|
+| language | English | 
+| type | daily |
+| time range | 1987–2007 |
+| number of articles | 1,854,726 |
+| mean monthly articles | 7,540 |
+
+---
+
+# 2. Approach NLP+NER
+
+--
+
+## Method (1/2)
+
+<br />
+* extraction of full text from XML (Sandhaus 2008)
+* processing using  NLTK (Bird/Loper/Klein 2009):
+ 	* tokenisation into sentences, POS
+ 	* NER (persons, locations, organisations)
+* identification of typical Vossanto patterns
+* simplified example (* indicates the three elements of a
+  Vossanto):
+
+```
+\((PERSON|ORGANIZATION|GPE) *\) (is|has) (often|sometimes)? (been)? (called)?
+the \(PERSON|ORGANIZATION|GPE) *\) (of|among|from) \((PERSON|ORGANIZATION|GPE) *\)
+```<!-- .element: style="font-size:0.75em;" -->
+
+--
+
+## Method (2/2)
+
+```python
+vossanto_re_str = """
+( # target
+  \((PERSON|ORGANIZATION|GPE)\ (?P<x10>[^)]*?)\)
+  (\ \((PERSON|ORGANIZATION)\ (?P<x11>[^)]*?)\))?
+  (\ (?P<x12>[^/()]*?)/NNP?)?
+)
+
+\
+( # is
+(is|has|are)/VBZ (\ (often|sometimes)/RB)? (\ been/VBN)? (\ called/VBN)?|
+-/:|
+,/,
+)
+
+\ the/DT # the
+
+\
+( # source
+  \((PERSON|ORGANIZATION|GPE)\ (?P<y11>[^)]*?)\)
+  (\ (?P<y12>[^/()]*?)/NNP?)?
+|
+  (?P<y31>[^/()]*?)/NNP
+)
+
+\ (of|among|from)/IN # of
+
+\ ( # modifier
+  ((?P<z10>[^/()]*?)/(CD|DT|JJ|IN))?
+  (?P<z11>[^/()]*?)/(NNS?|DT)
+  (\ (?P<z12>[^/()]*?)/(IN|JJ))?
+  (\ (?P<z13>[^/()]*?)/NNS?)?
+|
+  (?P<z31>[^/()]*?)/NNP
+|
+  ((?P<z40>[^/()]*?)/(CD|DT|JJ)\ )?
+  \((ORGANIZATION|PERSON|GPE)\ (?P<z41>[^)]*?)\)
+  (\ (?P<z43>[^/()]*?)/NN[SP]?)?
+)
+
+\ [\.,-]/[\.,:]
+"""
+```
+
+--
+
+## Results (1/4)
+
+<br />
+* extraction of  10,744 candidates (on average  512 per year)
+* two-stage manual verification
+* restriction to Vossantos with at least one individual (person/animal/figure)
+* omission of locations, companies, and groups of individuals
+  (Vossantos like »Algarve, the Riviera of Portugal« or »Pepsi is the
+  Nike of soft drinks« justify a separate analysis)
+* result: 246 Vossantos (2,3%; no precision value since we did not consider all Vossantos): [overview on GitHub](https://github.com/weltliteratur/vossanto/blob/master/vossanto-NYT-only-individuals.md)
+* compared to the complete corpus, Vossantos are a relatively rare
+  phenomen, their distribution over the years is quite regular
+
+--
+
+## Results (2/4)
+
+### Most frequent Vossantos
+
+<br />
+
+| article count | *source* |
+|:------:|:------------------------:|
+| 6 | Michael Jordan |
+| 5 | Michelangelo |
+| 4 | Babe Ruth |
+| 3 | Don Quixote |
+| 3 | Elvis |
+| 3 | Neil Young |
+| 3 | Rodney Dangerfield |
+| 3 | Zelig |
+
+--
+
+## Results (3/4)
+
+### »the Michael Jordan of«
+
+<br />
+
+* »Romario is the **Michael Jordan** of soccer and Bebeto is the Magic Johnson of soccer« ([1994](http://www.nytimes.com/1994/07/05/sports/world-cup-94-point-proved-hearts-heavy-it-s-time-to-go-home.html))
+* »Bonfire, the **Michael Jordan** of dressage horses« ([1998](http://www.nytimes.com/1998/11/05/sports/horse-show-national-thrives-again-with-garden-as-setting.html))
+* »Brian Foster, the **Michael Jordan** of BMX racing« ([1998](http://www.nytimes.com/1998/12/27/sports/1998-in-review-champions-all-and-all-in-anonymity.html))
+* »The stunt biker Dave Mirra, the **Michael Jordan** of the dirt set« ([2000](http://www.nytimes.com/2000/08/13/weekinreview/this-is-extremely-sporting.html))
+* »Cynthia Cooper is the **Michael Jordan**, the Larry Bird, the Magic Johnson of this league« ([2000](http://www.nytimes.com/2000/08/28/sports/sports-of-the-times-cooper-leaving-behind-a-legacy-of-greatness.html))
+* »McNabb has been called the **Michael Jordan** of the National Football League« ([2001](http://www.nytimes.com/2001/01/08/sports/on-pro-football-mcnabb-on-the-run-from-start-to-finish.html))
+
+<br />
+*
+
+Barack Obama:
+»There is a reason you call someone the Michael Jordan of [something]. They know what you’re talking about because Michael Jordan is the Michael Jordan of greatness. He is the definition of somebody so good at what they do that everybody recognizes it. That’s pretty rare.« ([Washington Post, 22.11.2016](https://wapo.st/2fD96iF))
+
+--
+
+## Results (4/4)
+
+### Animals as *target*
+
+* »A rugged cat, in a fluffy sort of way, **[Morris](https://en.wikipedia.org/wiki/Morris_the_Cat)** has been the Clark Cable of the catnip crowd.« ([1988](http://www.nytimes.com/1988/05/29/business/luring-56-million-ailurophiles.html?pagewanted=all))
+* »**[Sea Hero](https://en.wikipedia.org/wiki/Sea_Hero)** is the Bobo Holloman of racing« ([1993](http://www.nytimes.com/1993/08/18/sports/sports-of-the-times-the-derby-is-history-to-sea-hero.html))
+* »**<a href="https://en.wikipedia.org/wiki/Bonfire_(horse)">Bonfire</a>**, the Michael Jordan of dressage horses« ([1998](http://www.nytimes.com/1998/11/05/sports/horse-show-national-thrives-again-with-garden-as-setting.html))
+
+<br />
+### Plush toys as *source*
+
+* »Jean-Claude Van Damme, the **[Energizer Bunny](https://en.wikipedia.org/wiki/Energizer_Bunny)** of action stars, just never stops trying.« ([1994](http://www.nytimes.com/1994/09/11/movies/the-annotated-calendar-film.html))
+
+--
+
+### Individual person/figure as source, firm/association/band/location as target
+
+<br />
+* »**Sturm, Ruger** is the **Benedict Arnold** of the gun industry,« said Aaron S. Zelman, owner of the Patriot Distribution Company, a Milwaukee-based concern that sells a semiautomatic pistol as well as products such as assault vests and tear gas.« ([1989](http://www.nytimes.com/1989/07/14/us/gun-import-ban-enriches-small-us-arms-makers.html?pagewanted=all))
+* »Also on hand is **Aerosmith**, the **Dorian Gray** of rock bands, to serve the same purpose Alice Cooper did in the first film.« ([1993](http://www.nytimes.com/1993/12/10/movies/review-film-it-s-wayne-and-garth-schwinging-once-again.html))
+* »**Bolt Beranek & Newman** has been the **Forrest Gump** of high technology, […]« ([1995](http://www.nytimes.com/1995/07/17/business/innovator-is-leaving-the-shadows-for-the-limelight.html))
+* »For most of this century, the **Hudson** has been the **John Barrymore** of rivers, noble in profile but a sorry wreck.« ([1996](http://www.nytimes.com/1996/07/05/arts/happy-trails-along-the-hudson.html))
+* »the **National Collegiate Athletic Association**, the **Kenneth Starr** of sports« ([1998](http://www.nytimes.com/1998/04/05/sports/backtalk-a-few-parting-shots-for-the-rangers-brass.html))
+
+<br /><br />
+… and of course:
+
+--
+
+![Nutella ist der Helmut Kohl unter den Brotaufstrichen.](images/der-helmut-kohl-unter-den-brotaufstrichen_der-freitag_35-2011.jpg)<!-- .element width="720px" -->
+
+»Nutella is the Helmut Kohl of chocolate spreads«
+
+([Ada Blitzkrieg](https://twitter.com/bangpowwww) in [*der Freitag* 35/2011](https://www.freitag.de/autoren/der-freitag/schmeckt-das-denn))
+
+--
+
+| n | target, | the | source | of | modifier | example |
+|:--:|:-------:|:---:|:------------:|:------------:|:--------:|:---:|:----------------------------------------------------------------------------------------:|
+| 13 | <span style="color:blue;">PER</span>, | DT | <span style="color:red;">ORG</span> | IN | <span style="color:green;">NNS</span> | (<span style="color:blue;">PER Thomas Eisner</span>) ,/, the/DT (<span style="color:red;">ORG St. Francis</span>) of/IN <span style="color:green;">bugs/NNS</span> |
+| 13 | <span style="color:blue;">PER</span>, | DT | <span style="color:red;">ORG</span> | IN | <span style="color:green;">GPE</span> | (<span style="color:blue;">PER Ethel Merman</span>) ,/, the/DT (<span style="color:red;">ORG Birgit Nilsson</span>) of/IN (<span style="color:green;">GPE Broadway</span>) |
+| 10 | <span style="color:blue;">PER</span>, | DT | <span style="color:red;">ORG</span> | IN | <span style="color:green;">NN</span> | (<span style="color:blue;">PER Eddie Shore</span>) ,/, the/DT (<span style="color:red;">ORG Babe Ruth</span>) of/IN <span style="color:green;">hockey/NN</span> |
+| 9 | <span style="color:blue;">PER</span>, | DT | <span style="color:red;">ORG</span> | IN | <span style="color:green;">DT NN</span> | (<span style="color:blue;">PER Hal Schell</span>) ,/, the/DT (<span style="color:red;">ORG Boswell</span>) of/IN <span style="color:green;">the/DT delta/NN</span> |
+| 7 | <span style="color:blue;">PER</span> | VBZ DT | <span style="color:red;">ORG</span> | IN | <span style="color:green;">NN</span> | (<span style="color:blue;">PER Mr. Solerwitz</span>) is/VBZ the/DT (<span style="color:red;">ORG Babe Ruth</span>) of/IN <span style="color:green;">ripoffs/NNS</span> |
+| 7 | <span style="color:blue;">PER</span> | DT | <span style="color:red;">PER</span> | IN | <span style="color:green;">GPE</span> | (<span style="color:blue;">PER Oscar</span>) ,/, the/DT (<span style="color:red;">PER Larry Bird</span>) of/IN (<span style="color:green;">GPE Brazil</span>) ,/, |
+| 7 | <span style="color:blue;">PER</span>, | DT | <span style="color:red;">ORG</span> | IN | <span style="color:green;">NN NNS</span> | (<span style="color:blue;">PER Edward Rogoff</span>) ,/, the/DT (<span style="color:red;">ORG Don Quixote</span>) of/IN <span style="color:green;">cab/NN riders/NNS</span> |
+| 6 | <span style="color:blue;">PER</span>, | DT | <span style="color:red;">ORG</span> | IN | <span style="color:green;">JJ NN</span> | (<span style="color:blue;">PER Carlos Gardel</span>) ,/, the/DT (<span style="color:red;">ORG Elvis</span>) of/IN <span style="color:green;">tango/JJ culture/NN</span> |
+| 5 | <span style="color:blue;">PER</span>, | DT | <span style="color:red;">ORG</span> | IN | <span style="color:green;">NN NN</span> | (<span style="color:blue;">PER Johnny Miller</span>) ,/, the/DT (<span style="color:red;">ORG Simon Cowell</span>) of/IN <span style="color:green;">golf/NN criticism/NN</span> |
+| 5 | <span style="color:blue;">GPE</span>, | DT | <span style="color:red;">ORG</span> | IN | <span style="color:green;">NNS</span> | (<span style="color:blue;">GPE McEnroe</span>) ,/, the/DT (<span style="color:red;">ORG Picasso</span>) of/IN <span style="color:green;">players/NNS</span>  |
+<!-- .element: style="font-size:0.75em;" -->
+
+--
+
+## Discussion
+
+- <span style="color:green">extracts target, source, modifier</span>
+- <span style="color:green">covers stylistic/grammatical variations</span>
+- <span style="color:green">covers different types of Vossantos</span>
+<br/><br/>
+- <span style="color:red">cumbersome and ad-hoc creation of patterns</span>
+- <span style="color:red">bad precision and recall</span>
+- <span style="color:red">relies on poor NER quality</span>
+
+
+---
+# 3. Approach "NatAdj"
+
+--
+
+## Method
+- idea: focus on Vossantos with national adjectives as <span style="color:green;">modifiers</span> (e.g., *"the
+  Chinese Picasso"*)
+- as before: use NLTK for POS+NER
+- extract
+  [list of national adjectives](https://en.wikipedia.org/wiki/List_of_adjectival_and_demonymic_forms_for_countries_and_nations)
+  from Wikipedia
+- finding occurrences of *"the NATADJ ENTITY"*
+- small experiment:
+   - for each adjective, let NLTK parse the string *"the ADJECTIVE Michael Jordan"*
+
+--
+
+## Results
+
+| len | freq | pattern | example |
+|:---:|:---------:|:----------------------:|:------------------------------------------------------------------: |
+| 1 | 183 | ORG | the/DT (ORG Cook Island Michael Jordan) |
+| 1 | 3 | FACILITY | the/DT (FACILITY Faroese Michael Jordan) |
+| 1 | 5 | PER | the/DT (PER Chadian Michael Jordan) |
+| 2 | 1 | GPE ORG | the/DT (GPE French) (ORG Guianese Michael Jordan) |
+| 2 | 1 | ORG PER | the/DT (ORG Americans) (PER Michael Jordan) |
+| 2 | 2 | NNP PER | the/DT I-Kiribati/NNP (PER Michael Jordan) |
+| 2 | 3 | JJ PER | the/DT Saint-Martinoise/JJ (PER Michael Jordan) |
+| 2 | 89 | GPE PER | the/DT (GPE Grenadian) (PER Michael Jordan) |
+| 2 | 9 | LOC PER | the/DT (LOC South Sudanese) (PER Michael Jordan) |
+| 3 | 1 | GPE NNP PER | the/DT (GPE U.S.) Virgin/NNP (PER Island Michael Jordan) |
+| 3 | 1 | ORG CC PER | the/DT (ORG Wallis) and/CC (PER Futuna Michael Jordan) |
+| 3 | 2 | GPE CC PER | the/DT (GPE Turks) and/CC (PER Caicos Island Michael Jordan) |
+| 3 | 2 | GPE LOC PER | the/DT (GPE French) (LOC Polynesian) (PER Michael Jordan) |
+<!-- .element: style="font-size:0.8em;" -->
+
+--
+
+## Discussion
+- <span style="color:red">patterns change when taking another person name</span>
+- <span style="color:red">not reliable, due to problems with NER</span>
+- <span style="color:red">false positives like "the German University of Hannover"</span>
+- option: modify next approach to search for *"the NADATJ (\w+\s+){1,5}"*
+
+---
+
+# 4. Approach "TheOf"
+
+--
+
+## Method (1/3)
+- idea: discard NLP, focus on most common pattern *"the <span style="color:red;">SOURCE</span> of <span style="color:green;">MODIFIER</span>"*:
+  ```python
+  re.compile("(\\bthe\\s+([\\w.,'-]+\\s+){1,5}?of\\b)", re.UNICODE)
+  ```
+- result for 1987: 575,711 candidates with 163,565 different <span style="color:red;">sources</span>:
+
+| count | source |
+|:-----:|:--------------:|
+| 7,205 | end |
+| 6,540 | University |
+| 4,493 | number |
+| 3,239 | sale |
+| 3,239 | rest |
+| 2,451 | use |
+| 2,233 | kind |
+| 2,154 | son |
+| 1,961 | age |
+| 1,939 | president |
+
+--
+
+## Method (2/3)
+
+- idea: use Wikidata  labels and aliases of [all instances of "human"](https://query.wikidata.org/#%20%20SELECT%20%3Fitem%20%3FitemLabel%20WHERE%0A%20%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP31%20wd%3AQ5%20.%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20instance%20of%20human%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20...%20include%20the%20labels%0A%20%20%20%20%20%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%0A%20%20%20%20%7D%0A%20%20%7D%0A) (2,801,931 items)
+- match everything between *"the"* and *"of"* against list (preferring smaller ids)
+- result for 1987: 2,880 candidates with 371 different <span style="color:red;">sources</span>:
+
+| freq | source |
+|:----:|:---------------:|
+| 764 | House |
+| 316 | wife |
+| 225 | Church |
+| 216 | Hall |
+| 122 | Bill |
+| 83 | Freedom |
+| 77 | Governor |
+| 59 | Duke |
+| 53 | King |
+| 45 | Sultan |
+
+--
+
+## Method (3/3)
+
+- idea: iteratively create a [blacklist of source labels](https://github.com/weltliteratur/vossanto/blob/master/theof/blacklist.tsv) which are ambiguous 
+- ignore candidates where <span style="color:red;">source</span> appears in blacklist
+- result for 1987: 104 candidates with 88 different <span style="color:red;">sources</span>:
+
+
+| freq | phrase |
+|:----:|:--------------------:|
+| 4 | Horatio Alger |
+| 4 | Frank Sinatra |
+| 3 | Woody Allen |
+| 3 | Madonna |
+| 2 | Tom Seaver |
+| 2 | Pete Rose |
+| 2 | Joan Baez |
+| 2 | Jackie Robinson |
+| 2 | Groucho Marx |
+| 2 | Abraham Lincoln |
+
+
+--
+
+## Results: temporal distribution (absolute)
+
+![temporal Vossanto distribution for NYT corpus](images/vossantos_theof_nyt.svg)<!-- .element width="70%" -->
+
+<!-- https://github.com/weltliteratur/vossanto/blob/master/theof/nyt_vossantos_over_time.svg -->
+
+Overall, 3,733 Vossanto candidates and 2,767 true Vossantos were found.
+
+--
+
+## Results: temporal distribution (relative)
+
+![temporal Vossanto distribution for NYT corpus](images/vossantos_theof_nyt_rel.svg)<!-- .element width="70%" -->
+
+--
+
+## Results: frequent sources
+
+| count | source |
+|:-----:|:------------------------: |
+| 67 | [Michael Jordan](https://www.wikidata.org/wiki/Q41421) |
+| 58 | [Rodney Dangerfield](https://www.wikidata.org/wiki/Q436386) |
+| 36 | [Babe Ruth](https://www.wikidata.org/wiki/Q213812) |
+| 32 | [Elvis Presley](https://www.wikidata.org/wiki/Q303) |
+| 30 | [Johnny Appleseed](https://www.wikidata.org/wiki/Q369675) |
+| 23 | [Pablo Picasso](https://www.wikidata.org/wiki/Q5593) |
+| 23 | [Bill Gates](https://www.wikidata.org/wiki/Q5284) |
+| 22 | [Michelangelo](https://www.wikidata.org/wiki/Q5592) |
+| 21 | [Donald Trump](https://www.wikidata.org/wiki/Q22686) |
+| 21 | [Jackie Robinson](https://www.wikidata.org/wiki/Q221048) |
+| 21 | [Madonna](https://www.wikidata.org/wiki/Q1744) |
+| 21 | [Tiger Woods](https://www.wikidata.org/wiki/Q10993) |
+| 20 | [P. T. Barnum](https://www.wikidata.org/wiki/Q223766) |
+| 18 | [Wolfgang Amadeus Mozart](https://www.wikidata.org/wiki/Q254) |
+| 18 | [Martha Stewart](https://www.wikidata.org/wiki/Q234606) |
+| 17 | [Adolf Hitler](https://www.wikidata.org/wiki/Q352) |
+| 17 | [Cinderella](https://www.wikidata.org/wiki/Q13685096) |
+| 16 | [Henry Ford](https://www.wikidata.org/wiki/Q8768) |
+| 16 | [William Shakespeare](https://www.wikidata.org/wiki/Q692) |
+| 15 | [Napoleon](https://www.wikidata.org/wiki/Q517) |
+
+--
+
+## Results: frequent categories
+
+| vossantos | | category | articles | |
+|---------: |-----:|:----------------------:|--------:|-------:|
+| 375 | 12.9% | Arts | 88,460 | 4.8% |
+| 363 | 12.4% | Sports | 160,888 | 8.7% |
+| 316 | 10.8% | New York and Region | 221,897 | 12.0% |
+| 264 | 9.1% | Arts; Books | 35,475 | 1.9% |
+| 194 | 6.7% | Movies; Arts | 27,759 | 1.5% |
+| 113 | 3.9% | Business | 291,982 | 15.7% |
+| 111 | 3.8% | Opinion | 134,428 | 7.2% |
+| 103 | 3.5% | U.S. | 89,389 | 4.8% |
+| 100 | 3.4% | Magazine | 11,464 | 0.6% |
+| 69 | 2.4% | Style | 65,071 | 3.5% |
+| 66 | 2.3% | Arts; Theater | 13,283 | 0.7% |
+| 49 | 1.7% | World | 79,786 | 4.3% |
+| 44 | 1.5% | Home and Garden; Style | 13,978 | 0.8% |
+| 35 | 1.2% | Travel | 10,440 | 0.6% |
+| 34 | 1.2% | | 42,157 | 2.3% |
+| 32 | 1.1% | Technology; Business | 23,283 | 1.3% |
+| 29 | 1.0% | Week in Review | 17,107 | 0.9% |
+| 27 | 0.9% | Home and Garden | 5,546 | 0.3% |
+| 20 | 0.7% | Style; Magazine | 1,519 | 0.1% |
+| 18 | 0.6% | World; Washington | 24,817  | 1.3% |
+
+--
+
+## Results: frequent modifiers
+
+| count | modifier |
+|:-----:|:-----------------:|
+| 47 | his day |
+| 29 | his time |
+| 28 | Japan |
+| 15 | his generation |
+| 15 | baseball |
+| 13 | women |
+| 13 | China |
+| 12 | the 1990 |
+| 12 | tennis |
+| 11 | today |
+| 11 | her day |
+| 10 | the Zulus |
+| 10 | the N |
+| 10 | the 90 |
+| 10 | her time |
+| 10 | Brazil |
+| 9 | politics |
+| 9 | our time |
+
+--
+
+## Discussion
+
+- <span style="color:green">considerably improved precision and recall</span>
+- <span style="color:green">very simple approach, also quite robust (no complex NLP/NER required)</span>
+- <span style="color:green">can support different types of sources (e.g., instances of
+  subclasses of "fictional character" or companies/organisations)</span><br/><br/>
+- <span style="color:red">limited to one type of source and one
+grammatical variant</span>
+   - *"the Mick Jagger or Michael Jordan of"*
+   - *"She could be the Michael Jordan that women's basketball hasn't yet had"*
+   - *"He has not been the Michael Jordan in the debates"*
+   - *"the abused pint-size Michelangelo of"*
+   - but *"the other is the Maggie Smith of"* already supported
+- <span style="color:red">effort to create  blacklist</span>
+- <span style="color:red">might not work well for other
+  languages</span> (e.g., in German more complex regex necessary due
+  to gender-specific articles and larger variety of prepositions)
+
+---
+
+# 5. Discussion
+
+--
+
+## Discussion
+
+- first large-scale exploration of the phenomenon Vossanto
+* despite gaps and errors in the extraction process some properties of
+  the stylistic device ›Vossian Antonomasia‹ could be analysed
+  much better than with the prior quite selective collection of samples
+* Vossanto as a special case of antonomasia can be broken down into several
+  sub-cases, a very effective stylistic device
+- creation of the largest known list of Vossantos to date (publicly
+  available together with source code on
+  [GitHub](https://github.com/weltliteratur/vossanto))
+- development of a robust method to extract Vossantos, easily
+  adaptable to other (English) corpora
+
+--
+
+## A favourite
+
+![Marquis de Sade](images/Marquis_de_Sade.jpg)<!-- .element height="300px" -->
+![Screenshot of Microsoft Word 1.15](images/word.png)<!-- .element height="300px" -->
+
+"When we introduced Word in October 1983, in its first incarnation it
+was dubbed *the Marquis de Sade of* word processors, which was not
+altogether unfair." (NYT 26/09/1993)
+
+image sources:
+[Wikimedia
+Commons](https://en.wikipedia.org/wiki/Marquis_de_Sade#/media/File:Marquis_de_Sade_portrait.jpg),
+[Nathan Toasty](http://toastytech.com/guis/word115.html)
+
+--
+
+### Thanks to
+
+Michael Angele, Angelika Bergien, Ada Blitzkrieg, Mathias Göbel,<br />
+Stefan Heßbrüggen-Walter, Arne Janning, Marc Reichwein
+
+---
+
+## 6. Bibliography
+
+* Bergien, A.: Names as frames in current-day media discourse. In: Felecan, O. (Hg.): Name and Naming. Proceedings of the second international conference on onomastics. Cluj-Napoca: Editura Mega 2013. S. 19–27.
+* Bird, S.; Klein, E.; Loper, E.: [Natural Language Processing with Python.](http://www.nltk.org/book/) O’Reilly Media Inc. 2009.
+* Faruqui, M.; Pado, S.: [Training and Evaluating a German Named Entity Recognizer with Semantic Generalization.](http://www.manaalfaruqui.com/papers/konvens10_faruqui.pdf) In: Proceedings of Konvens 2010, Saarbrücken, Germany.
+* Fischer, F.; Wälzholz, J.: [Jeder kann Napoleon sein. Vossianische Antonomasie: Eine Stilkunde.](http://www.umblaetterer.de/wp-content/uploads/2014/12/vossanto_fas.png) In: Frankfurter Allgemeine Sonntagszeitung, Nr. 51 (21. Dezember 2014), S. 34.
+* Holmqvist K.; Płuciennik J.: Princess antonomasia and the truth: Two types of metonymic relations. In: Burkhardt, A.; Nerlich, B. (Hg.): Tropical Truth(s). The Epistemology of Metaphor and Other Tropes. Berlin/New York: De Gruyter 2010. S. 373–381. DOI: [10.1515/9783110230215](http://doi.org/10.1515/9783110230215).
+* Lausberg, H.: Handbuch der literarischen Rhetorik. Eine Grundlegung der Literaturwissenschaft. Band 2. München: Hueber 1960.
+* Sandhaus, E.: The New York Times Annotated Corpus LDC2008T19. DVD. Philadelphia: Linguistic Data Consortium, 2008.
+* repository: [github.com/weltliteratur/vossanto](https://github.com/weltliteratur/vossanto)
+
+</script>
+			    </section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
