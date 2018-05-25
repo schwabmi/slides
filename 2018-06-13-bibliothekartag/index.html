@@ -58,9 +58,7 @@ Dieses Werk ist lizenziert unter einer <a rel="license" href="http://creativecom
 1. [Einleitung](#/2)
 2. [Beispiel 1](#/3): Bibliothekskatalog
 3. [Beispiel 2](#/4): soziale Medien
-4. [Beispiel 3](#/5): Literaturvolltexte
-5. [Beispiel 4](#/6): Zeitungsartikel
-6. [Diskussion](#/7)
+4. [Diskussion](#/5)
 
 ---
 
@@ -159,7 +157,7 @@ alle Schritte im
 <br />
 
 | Substantiv | Frequenz |
-|:-:|:-:|
+|:--|--:|
 | Liebe | 3 117 |
 | Mann | 1 906 |
 | Frau | 1 686 |
@@ -181,7 +179,7 @@ alle Schritte im
 <br />
 
 | Trigramm | Frequenz |
-|:-:|:-:|
+|:--|--:|
 | Das Geheimnis der | 238
 | Das Haus der | 224
 | Der Mann der | 189
@@ -231,19 +229,143 @@ DOI: [10.1371/journal.pone.0179630](http://dx.doi.org/10.1371%2fjournal.pone.017
 
 --
 
-## Motivation
+## Ziele und Ausgangslage
 
-(Marco-Paper)
+- Altmetrics
+- Pony-tail/Ignobel? (Screenshot?!)
+- was finden /Forscher/ spannend und wie können wir das entdecken?
+- auch: wem folgen? Jungen Forschenden Orientierung bieten
+
+- Twitter-API frei verfügbar: 1% Sample + Nutzerdaten
+- Vorarbeit: DOI: [10.1145/2615569.2615676](https://dx.doi.org/10.1145/2615569.2615676)
 
 --
 
 ## Framework
 
+![Überblick über das Framework](images/twitter_methods.svg)<!-- .element width="1040px" -->
+
+|Maß|Informatik|Zufallsstichprobe|
+|:--|--:|--:|
+|NutzerInnen|6 694|117 907 194|
+|Tweets|2 259 756|1 605 361 179|
+|Tweets mit Link |957 480|300 053 850|
+|Links|762 918|168 881 714|
+
+
 --
 
-## Ergebnisse
+## Häufige Domänen
+
+| |Informatik| | |Zufallsstichprobe| | |
+|--:|:--|--:|--:|:--|--:|--:|
+|1|youtube.com|3 741|60%|instagram.com|8 268 717|16%|
+|2|google.com|2 390|38%|youtube.com|6 930 076|14%|
+|3|twitter.com|2 164|35%|facebook.com|5 243 498|10%|
+|4|wordpress.com|1 970|31%|vine.co|4 910 634|10%|
+|5|facebook.com|1 941|31%|twitter.com|3 289 243|6%|
+|6|nytimes.com|1 931|31%|ask.fm|1 672 538|3%|
+|7|github.com|1 710|27%|unfollowers.com|1 207 399|2%|
+|8|wired.com|1 652|26%|uapp.ly|963 553|2%|
+|9|theguardian.com|1 626|26%|path.com|825 788|2%|
+|10|tumblr.com|1 619|26%|edu.sa|633 249|1%|
+<!--
+|11|instagram.com|1 527|24%|fllwrs.com|613 842|1%|
+|12|medium.com|1 486|24%|moi.st|608 207|1%|
+|13|slideshare.net|1 407|22%|twitpic.com|558 392|1%|
+|14|techcrunch.com|1 365|22%|soundcloud.com|505 597|1%|
+|15|blogspot.com|1 358|22%|twcm.me|486 662|1%|
+|16|vimeo.com|1 342|21%|tumblr.com|485 911|1%|
+|17|wikipedia.org|1 326|21%|swarmapp.com|409 063|1%|
+|18|wsj.com|1 147|18%|po.st|406 380|1%|
+|19|washingtonpost.com|1 126|18%|blogspot.com|403 017|1%|
+|20|github.io|1 104|18%|justunfollow.com|399 428|1%|
+-->
+
+(Anzahl/-teil der NutzerInnen)<!-- .element: style="font-size:0.75em;" -->
+
+--
+
+## Top Publikationen
+
+![Top Publikationen](images/publikationen.png)<!-- .element width="1040px" -->
+
+--
+
+## Häufige "Verlags"-Domänen
+
+| |Domäne|Odds Ratio|
+|--:|:--|--:|
+|1|ceur-ws.org|156 199|
+|2|aaai.org|71 015|
+|3|nott.ac.uk|65 657|
+|4|umontreal.ca|56 202|
+|5|umd.edu|53 475|
+|6|vldb.org|47 775|
+|7|computer.org|44 520|
+|8|arizona.edu|42 967|
+|9|acm.org|40 306|
+|10|aclweb.org|40 221|
+
+<!-- .element: style="float: left;" -->
+
+| |Domäne|Odds Ratio|
+|--:|:--|--:|
+|11|gla.ac.uk|35 831|
+|12|ucsb.edu|35 439|
+|13|utah.edu|35 072|
+|14|toronto.edu|35 061|
+|15|cmu.edu|32 943|
+|16|tue.nl|31 550|
+|17|soton.ac.uk|30 688|
+|18|cornell.edu|30 148|
+|19|ucdavis.edu|29 203|
+|20|sigcomm.org|28 601|
 
 
+---
+
+# Diskussion
+
+- eigene Daten als Schatz (z.B. Katalog)
+- frei verfügbare Daten
+
+- geeignete Ausbildung notwendig, die grundlegende Kenntnisse in
+  Statistik, Programmieren, Datenanalyse, etc. umfasst
+- wird am IBI geboten
+
+
+--
+
+<div style="float:right; width:20%;">
+  <a href="http://slides.igada.de/2018-06-13-bibliothekartag/"><img src="images/qrcode.png" alt="Link zu den Folien"/></a>
+  
+  <p style="font-size:.5em;padding-top:0px;margin-top:0px;">
+    <a href="http://slides.igada.de/2018-06-13-bibliothekartag/">http://slides.igada.de/2018-06-13-bibliothekartag/</a>
+  </p>
+
+  <a href="https://www.bibsonomy.org/"><img src="images/postit.png" alt="www.bibsonomy.org" style="box-shadow:none;"/></a>
+</div>
+
+
+![XKCD: Questions?](images/xkcd_1256.png)
+<!-- .element: style="width:100%;margin-bottom:0px;" -->
+
+<!-- .element: style="width:70%;margin-bottom:0px;margin-top:0px;" -->
+
+https://xkcd.com/1256/
+
+<!-- .element: style="width:70%;font-size:0.5em;margin-top:0px;" -->
+
+
+
+- Dank an:
+  [Marco Schmitt](http://www.soziologie.rwth-aachen.de/cms/Soziologie/Die-Organisationseinheit/Lehr-und-Forschungseinheiten/Technik-und-Organisation/~noaz/Dr-Marco-Schmitt/),
+  [Frank Fischer](https://www.hse.ru/en/org/persons/182492735),
+  [Asmelash Teka Hadgu](https://www.l3s.de/de/users/teka)
+- Kontakt: [robert.jaeschke@hu-berlin.de](mailto:robert.jaeschke@hu-berlin.de)
+
+<!-- .element: style="width: 70%; float:left;" -->
 
 ---
 
@@ -316,52 +438,15 @@ gesamter Vortrag: [Der Helmut Kohl unter den
 Brotaufstrichen](https://lehkost.github.io/slides/2017-bern/)<br/> DHd
 Bern, 15. Februar 2017
 
---
-
-## Beispiele aus freier Wildbahn (1/4)
-
-<br />
-![Vittorio Hösle, der Boris Becker der Philosophie](images/der-boris-becker-der-philosophie_welt-de.jpg)<!-- .element width="800px" -->
-
-<br />
-= Vittorio Hösle (Quelle: [welt.de](https://www.welt.de/politik/ausland/article120037085/Papst-ehrt-den-Boris-Becker-der-Philosophie.html), 2013)
-
---
-
-## Beispiele aus freier Wildbahn (2/4)
-
-<br />
-![Alice Schwarzer, der Erich Honecker des Feminismus](images/der-erich-honecker-des-feminismus_cicero-de.jpg)<!-- .element width="800px" -->
-
-<br />
-= Alice Schwarzer (Quelle: [cicero.de](http://www.cicero.de/berliner-republik/alice-schwarzer-der-erich-honecker-des-feminismus/56963), 2014)
-
---
-
-## Beispiele aus freier Wildbahn (3/4)
-
-<br />
-![Markus Lanz, der Christian Wulff des Showgeschäfts](images/der-christian-wulff-des-showgeschaefts_spiegel-de.jpg)<!-- .element width="800px" -->
-
-<br />
-= Markus Lanz (Quelle: [spiegel.de](http://www.spiegel.de/kultur/tv/markus-lanz-auf-online-petition-folgt-wetten-dass-a-945188.html), 2014)
-
---
-
-## Beispiele aus freier Wildbahn (4/4)
-
-<br />
-![Jim Koch, the Steve Jobs of beer](images/the-steve-jobs-of-beer_theatlantic-com.jpg)<!-- .element width="800px" -->
-
-<br />
-= Jim Koch (Quelle: [theatlantic.com](https://www.theatlantic.com/magazine/archive/2014/11/the-steve-jobs-of-beer/380790/), 2014)
-
 
 --
 
 ## Was ist eine Vossianische Antonomasie?
 
-![portrait of Gerhard Johannes Vossius; source: Wikimedia Commons](images/vossius.jpg)<!-- .element width="250px" -->
+
+
+![portrait of Gerhard Johannes Vossius; source: Wikimedia Commons](images/vossius.jpg)
+<!-- .element: style="float: right; width: 22%; margin: 0px;" -->
 
 - Erstbeschreibung als eigenes Phänomen durch Gerhard Johannes Vossius (1577–1649)
 - Subphänomen der klassischen ›Antonomasie‹
@@ -370,82 +455,15 @@ Bern, 15. Februar 2017
   style="color:blue;">Target</span> (cf. Bergien 2013)
 - <span style="color:blue;">Markus Lanz</span>, der <span
   style="color:red;">Christian Wulff</span> des <span
-  style="color:green;">Showgeschäfts</span>
+  style="color:green;">Showgeschäfts</span> (Quelle:
+  [spiegel.de](http://www.spiegel.de/kultur/tv/markus-lanz-auf-online-petition-folgt-wetten-dass-a-945188.html),
+  2014)
+- Ziel: automatische Extraktion aus großen Zeitungskorpora (»New York Times«
+  1987–2007 und »Die Zeit« 1995–2011)
 
---
+<!-- .element: style="width: 65%;" -->
 
-## Untersuchte Korpora
-
-<br/>
-
-| | englisches Korpus | deutsches Korpus |
-|-:|:----------------:|:-----------------:|
-| Titel | »New York Times«	| »Die Zeit« |
-| Typ | Tageszeitung | Wochenzeitung |
-| Zeitraum | 1987–2007	| 1995–2011 |
-| Anzahl Dokumente | 1.854.726 | 126.702 |
-| Durchschnittl. pro Monat | 7.540 | 621 |
-
---
-
-## Höchstfrequente Vossantos im *Die Zeit*-Korpus
-
-<br />
-
-| Anzahl | *source* |
-|:------:|:------------------------:|
-| 9 | Robin Hood |
-| 6 | Bill Gates |
-| 4 | Franz Beckenbauer |
-| 3 | Daniel Düsentrieb |
-| 3 | Heinz Rühmann |
-| 3 | James Dean |
-| 3 | Jesus Christus |
-| 3 | Norbert Blüm |
-| 3 | Willy Brandt |
-
---
-
-## *Die Zeit*-Korpus: "der Robin Hood der/des"
-
-<br />
-
-* »Rainer Metz ist für Bank- und Sparkassenvorstände so etwas wie der **Robin Hood** des Kreditgewerbes.« ([1997](http://www.zeit.de/1997/06/Kleinkrieg_mit_den_Banken/komplettansicht))
-* »Krause, der Streiter für eine andere CDU, der **Robin Hood** des Ostens.« ([1998](http://www.zeit.de/1998/15/Robin_Hood_des_Ostens/komplettansicht))
-* »In der Presse ist Bové der **Robin Hood** der entrechteten Schafhirten, der listige Asterix, der es mit den übermächtigen Römern aufnimmt, der französische David gegen den amerikanischen Goliath.« ([2000](http://www.zeit.de/2000/28/Kaempfer_an_globaler_Front/komplettansicht))
-* »Erschossen: James, der **Robin Hood** des Wilden Westens« ([2000](http://www.zeit.de/2000/14/38983/komplettansicht))
-* »Die Karriere eines edlen Wilden, ein **Robin Hood** aus Australien, erzählt von ihm selbst« ([2002](http://www.zeit.de/2002/30/Die_ZEIT-Liste/komplettansicht))
-* »Tatsächlich lebte Schinderhannes nach seiner Hinrichtung fort, und zwar nicht als der, der er gewesen war, sondern wie man sich ihn imaginierte: als ein **Robin Hood** des Hunsrück, der den Reichen genommen hatte, um den Armen zu geben.« ([2003](http://www.zeit.de/2003/47/A-Schinderhannes_/komplettansicht))
-* »›I speak for shoemakers, I also speak for mechanics‹, rappt er in einem anderen Titel – Ruggedman, der **Robin Hood** des Afrorap.« ([2006](http://www.zeit.de/2006/05/Lagos/komplettansicht))
-* »Wie ein **Robin Hood** der Kranken und Verunsicherten, der sich über jegliche Kosten- und Nutzenargumente der Krankenkassen hinwegsetzt, fordert er auch ›flächendeckende Grippeimpfungen‹ und einen ›großzügigen Einsatz der neuen Grippemedikamente‹.« ([2006](http://www.zeit.de/2006/49/Schleichwerbung/komplettansicht))
-* »Für seine Bewunderer ist Julian Assange der **Robin Hood** des Internets.« ([2010](http://www.zeit.de/2010/51/P-Zeitgeist))
-
-<!-- .element: style="font-size:0.9em;" -->
-
---
-
-## *Die Zeit*-Korpus: Vossanto-Verteilung in Rubriken
-
-<br />
-
-| Rubrik | Anzahl Artikel |
-|:------:|:--------------:|
-| Feuilleton + Literatur | 76 |
-| Politik | 54 |
-| Wirtschaft | 23 |
-| Leben | 21 |
-| Dossier | 8 |
-| Reise | 7 |
-| Wissen | 7 |
-| Modernes Leben | 5 |
-| Chancen | 3 |
-| Wochenschau | 2 |
-| ZEIT Geschichte | 1 |
-
-
----
-
-# Fazit
+  ![Markus Lanz, der Christian Wulff des Showgeschäfts](images/der-christian-wulff-des-showgeschaefts_spiegel-de.jpg)<!-- .element width="60%" -->
 
 
 
