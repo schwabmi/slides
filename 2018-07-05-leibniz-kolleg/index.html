@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=1600, height=900, initial-scale=1.0, maximum-scale=1.5, user-scalable=no">
 
-		<title>Datenschätze selber heben: Data Science und Bibliotheken</title>
+		<title>Big Data and its impact on the research system</title>
 
 		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
 		<link rel="stylesheet" href="../reveal.js/css/theme/simple.css">
@@ -31,79 +31,228 @@
 <script type="text/template">
 
 
-# Datenschätze selber heben<!-- .element: style="font-size:3em;" -->
-
-## Data Science und Bibliotheken
+# Big Data and its impact on the research system
 
 <br />[Robert Jäschke](https://amor.cms.hu-berlin.de/~jaeschkr/)
 
-<br />Humboldt-Universität zu Berlin<br/>Forschungszentrum L3S, Hannover<!-- .element: style="font-size:0.75em;" -->
+<br />Humboldt-Universität zu Berlin<br/>L3S Research Center, Hannover<!-- .element: style="font-size:0.75em;" -->
 
-<br />5. Juli 2018
+<br />July 5, 2018
 
 
 <br/><p style="font-size:0.75em;">
-<a rel="license"
-href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative
-Commons Lizenzvertrag" style="border-width:0"
-src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a> <br/>
-Dieses Werk ist lizenziert unter einer <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Namensnennung 4.0 International Lizenz</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 </p>
+
+
+
 
 --
 
 ## Agenda
 
 <br />
-1. [Was ist Big Data?](#/1)
-2. [Beispiel 1](#/2): Bibliothekskatalog
-3. [Beispiel 2](#/3): soziale Medien
-4. [Diskussion](#/4)
-
+1. [What is Big Data?](#/1)
+2. [Big Data in Research](#/2)
+3. [Data Management and Skills](#/3)
+4. [Discussion](#/4)
 
 --
 
 ![Werdegang](images/antrittsvorlesung.png)<!-- .element: style="margin-top: -20px;" -->
 
+
+--
+
+# What's your discipline?
+
+![Purity](https://imgs.xkcd.com/comics/purity.png)
+
+
+Source: [Randall Munroe, XKCD](https://xkcd.com/435/) 
+
+<!-- .element: style="font-size:0.75em;" -->
+
+
+--
+
+# What's the **size** of the largest dataset you have **used**?
+
+--
+
+# What's the **size** of the largest dataset you have **produced**?
+
 ---
 
-# Was ist Big Data?
+<!-- # What is Big Data?
 
 - Deutsche Telekom: http://youtu.be/Z0PWQd3CvGE 
 - Landesanstalt für Medien NRW: http://youtu.be/otWN5o1C2Bc
 
+--> 
+
+
+# What is Big Data?
+
+- data too large to be processed with traditional applications
+- **tasks**: collect, store, share, transfer, visualise, search,
+  retrieve, index, analyse, ...
+- **examples**: meteorology, scientific data (physics, astronomy,
+  etc.), finance, web search/mining, ...
+- **reasons**: internet of things, social web, log files, cameras, ...
+- **problem**: difficult to process with traditional software/RDBMS
+- **instead**: massive parallel software, hundreds/thousands of servers
+- **"big"**: depends on application/organisation, changes over time
+
 --
 
-# Was ist Big Data?
+![The FOUR V's of Big Data](http://www.ibmbigdatahub.com/sites/default/files/infographic_file/4-Vs-of-big-data.jpg)
 
-- Daten zu groß, für Verarbeitung mit traditionellen Anwendungen
-- **Aufgaben**: Sammeln, Speichern, Teilen, Transferieren, Visualisieren,
-  Durchsuchen, Indizieren, Analysieren, etc.
-- **Beispiele**: Meteorologie, Physikalische Simulationen (LHC),
-  Finanzwirtschaft, Internetsuche, Wirtschaftsinformatik, …
-- **Ursachen**: viele neue Sensoren, Logdateien, Kameras, etc.
-- **Problem**: schwierig mit traditionellen RDBMs/Software zu
-  verarbeiten
-- **Stattdessen**: massiv parallele Software, hunderte/tausende Server
-- **"groß"**: hängt von Anwendung/Organisation ab, ändert sich
 
--- 
+Source: [IBM Big Data Hub](http://www.ibmbigdatahub.com/sites/default/files/infographic_file/4-Vs-of-big-data.jpg)
 
-# Was ist Big Data?
+<!-- .element: style="font-size:0.75em;" -->
+
+--
+
+![How big is Big Data?](https://www.uschamberfoundation.org/sites/default/files/legacy/foundation/u94/BigData1.jpg)
+![Big Data in a single day online](images/bigdata_oneday.png)
+
+
+Sources: [U.S. Chamber of Commerce
+Foundation](https://www.uschamberfoundation.org/sites/default/files/legacy/foundation/u94/BigData1.jpg), [SITA](https://www.sita.aero/)
+
+<!-- .element: style="font-size:0.75em;" -->
 
 ---
 
-# Fallstudie
+# Big Data in Research
 
-- Erarbeiten Sie ein Szenario aus Ihrem Fach-/Interessensgebiet, in dem Big Data eine wesentliche Rolle spielt (z.B. Energienetze, …)
-  - Welche Daten fallen an?
-  - Welche Möglichkeiten, Herausforderungen und Probleme ergeben sich durch die Nutzung dieser Daten?
-  - Suchen Sie nach Lösungsansätzen für Ihr Szenario.
-- Arbeit in Kleingruppen (3-4 Personen), 10 Minuten Zeit
-- Ergebnissicherung: Präsentation/Ausfüllen der Tabelle an der Tafel
-  - (Spalten: Szenario, Daten, Möglichkeiten, Herausforderungen, Probleme, Lösungsansätze)
+
+![Tracks of Birds in Movebank](images/movebank.png) <!-- .element height="300px" -->
+![Large Synoptic Survey
+Telescope](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Large_Synoptic_Survey_Telescope_3_4_render_2013.png/1280px-Large_Synoptic_Survey_Telescope_3_4_render_2013.png) <!-- .element height="300px" -->
 
 --
+
+# Velocity
+
+> »In every 24-hour period approximately 20,000,000 words of technical
+> information are being recorded. A reader capable of reading 1,000
+> words per minute would require 1.5 months, reading 8 hours every
+> day, to get through 1 day’s technical output, and at the end of that
+> period, he would have fallen 5.5 years behind in his reading!«
+
+--
+
+# Velocity
+
+![Hubert Murray, Jr., January 1966](images/murray_1966.png)
+
+Source: [Methods for satisfying the needs of the scientist and the
+engineer for scientific and technical
+information](http://www.dtic.mil/docs/citations/AD0627845). Hubert
+Murray, Jr., January ....
+
+<!-- .element: style="font-size:0.75em;" -->
+
+--
+
+# Volume
+
+![How much science is
+there?](http://www.sciencemag.org/site/special/scicomm/infographic.jpg?_ga=2.138439859.1661497736.1528101645-212930564.1528101645)
+
+Source: [Randall Munroe](http://science.sciencemag.org/content/342/6154/58.full)
+
+<!-- .element: style="font-size:0.75em;" -->
+
+--
+
+# Variety
+
+![Variety](images/variety.png) <!-- .element: style="box-shadow:none;" -->
+
+--
+
+![Tracks of Birds in Movebank](images/movebank.png)
+
+Source: https://www.movebank.org/
+
+<!-- .element: style="font-size:0.75em;" -->
+
+--
+
+![Large Synoptic Survey
+Telescope](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Large_Synoptic_Survey_Telescope_3_4_render_2013.png/1280px-Large_Synoptic_Survey_Telescope_3_4_render_2013.png) <!-- .element width="700px" -->
+
+Source: [LSST Project Office](https://commons.wikimedia.org/wiki/File:Large_Synoptic_Survey_Telescope_3_4_render_2013.png)
+
+<!-- .element: style="font-size:0.75em;" -->
+
+--
+
+![Four Degrees of Separation](images/fourdegrees.svg) <!-- .element width="600px" -->
+
+Source: [Four Degrees of Separation](https://arxiv.org/abs/1111.4570),
+Lars Backstrom, Paolo Boldi, Marco Rosa, Johan Ugander, Sebastiano
+Vigna, 2012.
+
+<!-- .element: style="font-size:0.75em;" -->
+
+--
+
+![LHC
+Tunnel](https://upload.wikimedia.org/wikipedia/commons/f/fc/CERN_LHC_Tunnel1.jpg) <!-- .element width="700px" -->
+
+Source: [Julian Herzog](https://commons.wikimedia.org/wiki/File:CERN_LHC_Tunnel1.jpg)
+
+<!-- .element: style="font-size:0.75em;" -->
+
+--
+
+# Big Data in Your Field
+
+![Group
+Work](https://upload.wikimedia.org/wikipedia/commons/6/64/People_icon_half.svg)<!--
+.element style="width:20%;float:right;" -->
+
+- Form a group and discuss examples of big data in your field(s).
+- Consider not just volume but also the other three V's.
+- What's the impact of big data in your discipline? 
+- How does it change the research process?
+- You can use your computer and the web for research. 
+- You have **ten minutes**.
+
+<!-- .element style="width:70%;" -->
+
+--
+
+# End of Theory
+
+
+![End of Theory](https://media.wired.com/photos/5a6bb01fe9c86f511f5e79d6/master/w_582,c_limit/pb_theory_f.jpg)
+
+[The End of Theory: The Data Deluge Makes the Scientific Method
+Obsolete](https://www.wired.com/2008/06/pb-theory/) <br/> by Chris Anderson,
+Wired, June 2008.
+
+---
+
+# Data Management and Skills
+
+![Tasks](https://imgs.xkcd.com/comics/tasks_2x.png) <!-- .element width="300px" -->
+
+
+Source: [Randall Munroe, XKCD](https://xkcd.com/1425/)
+
+<!-- .element: style="font-size:0.75em;" -->
+
+--
+
+
+---
+
 
 <div style="float:right; width:20%;">
   <a href="http://slides.igada.de/2018-06-13-bibliothekartag/"><img src="images/qrcode.png" alt="Link zu den Folien"/></a>
@@ -125,19 +274,25 @@ Dieses Werk ist lizenziert unter einer <a rel="license" href="http://creativecom
 
 <!-- .element: style="width:70%;margin-bottom:0px;margin-top:0px;" -->
 
-https://xkcd.com/1256/
+Source: [Randall Munroe, XKCD](https://xkcd.com/1256/)
 
 <!-- .element: style="width:70%;font-size:0.5em;margin-top:0px;" -->
 
 
 
-- Dank an:
-  [Marco Schmitt](http://www.soziologie.rwth-aachen.de/cms/Soziologie/Die-Organisationseinheit/Lehr-und-Forschungseinheiten/Technik-und-Organisation/~noaz/Dr-Marco-Schmitt/),
-  [Frank Fischer](https://www.hse.ru/en/org/persons/182492735),
-  [Asmelash Teka Hadgu](https://www.l3s.de/de/users/teka)
-- Kontakt: [robert.jaeschke@hu-berlin.de](mailto:robert.jaeschke@hu-berlin.de)
+contact: [robert.jaeschke@hu-berlin.de](mailto:robert.jaeschke@hu-berlin.de)
 
 <!-- .element: style="width: 70%; float:left;" -->
+
+
+-- 
+
+# Sources and Further Reading
+
+- http://www.ft.com/cms/s/2/21a6e7d8-b479-11e3-a09a-00144feabdc0.html
+- https://www.wired.com/2008/06/pb-theory/
+- https://doi.org/10.1016/j.bdr.2015.01.006
+- http://sites.nationalacademies.org/cs/groups/pgasite/documents/webpage/pga_152501.pdf
 
 
 </script>
