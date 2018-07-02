@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.0"
+   width="400"
+   height="350"
+   id="svg2">
+  <defs
+     id="defs4" />
+  <g
+     transform="translate(-146.42856,-92.790779)"
+     id="layer1">
+    <path
+       d="M 346.42855,118.26131 C 428.86953,118.26131 495.95801,185.3498 495.95801,267.79078 C 495.95804,350.23176 428.86953,417.32024 346.42855,417.32024 C 263.98757,417.32024 196.89909,350.23176 196.89909,267.79078 C 196.89909,215.80993 223.57065,169.93259 263.94515,143.12736 L 259.45468,134.40758 L 280.05356,144.16578 L 277.49244,167.10956 L 272.21618,157.97082 C 237.03109,181.77764 213.92806,222.05795 213.92806,267.79078 C 213.92806,341.0337 273.18563,400.29127 346.42855,400.29127 C 419.67147,400.29127 478.92905,341.0337 478.92904,267.79078 C 478.92904,194.54787 419.67147,135.29029 346.42855,135.29029"
+       id="path2396"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       width="122.77142"
+       height="55.065941"
+       rx="9"
+       ry="9"
+       x="285.55182"
+       y="113.80935"
+       id="rect3172"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       width="122.77142"
+       height="55.065941"
+       rx="9"
+       ry="9"
+       x="414.95236"
+       y="207.14745"
+       id="rect3174"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       width="122.77142"
+       height="55.065941"
+       rx="9"
+       ry="9"
+       x="155.44417"
+       y="207.14745"
+       id="rect3176"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       width="122.77142"
+       height="55.065941"
+       rx="9"
+       ry="9"
+       x="387.72876"
+       y="340.79062"
+       id="rect3178"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       width="122.77142"
+       height="55.065941"
+       rx="9"
+       ry="9"
+       x="180.54648"
+       y="340.79062"
+       id="rect3184"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       x="347.2056"
+       y="148.05276"
+       id="text3186"
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"><tspan
+         x="347.2056"
+         y="148.05276"
+         id="tspan3188">Observation</tspan></text>
+    <text
+       x="216.72002"
+       y="241.39087"
+       id="text3194"
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"><tspan
+         x="216.72002"
+         y="241.39087"
+         id="tspan3196">Evaluation</tspan></text>
+    <text
+       x="476.22821"
+       y="241.39087"
+       id="text3198"
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"><tspan
+         x="476.22821"
+         y="241.39087"
+         id="tspan3200">Induction</tspan></text>
+    <text
+       x="242.77594"
+       y="373.2894"
+       id="text3202"
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"><tspan
+         x="242.77594"
+         y="373.2894"
+         id="tspan3204">Testing</tspan></text>
+    <text
+       x="449.00461"
+       y="375.03403"
+       id="text3206"
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Sans;-inkscape-font-specification:Sans"><tspan
+         x="449.00461"
+         y="375.03403"
+         id="tspan3208">Deduction</tspan></text>
+  </g>
+</svg>
