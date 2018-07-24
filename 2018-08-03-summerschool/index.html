@@ -250,8 +250,8 @@ Source: [Julian Herzog](https://commons.wikimedia.org/wiki/File:CERN_LHC_Tunnel1
 - Jeffrey Dean & Sanjay Ghemawat, Google, 2004
 - programming model + execution environment for data parallelism
 - developed for data-intensive applications
-- simple interface, separating *what* from *how*
-- processing of very big data (TB-PB) on thousands of nodes
+- simple API, separating *what* from *how*
+- processing of very big data (TB-PB) on thousands of processors
 - open source implementation: **Hadoop**
 
 ## Google File System
@@ -280,26 +280,62 @@ Source: [Julian Herzog](https://commons.wikimedia.org/wiki/File:CERN_LHC_Tunnel1
 
 ## Ideas
 
-- no data dependencies
-- data can be split in equal-sized chunks
-- each process handles one chunk
+- no data dependencies/data can be split into equal-size chunks
+- each process can work on a chunk
 - master/worker approach:
- - master
-  - splits data into chunks
-  - verteilt diese an Worker
-  - erhält Ergebnisse von Workern
- - worker
-  - erhalten Datensätze von Master
-  - verarbeiten diese
-  - senden Ergebnisse  an Master
+	- **master**
+		- splits data into chunks
+		- sends chunks to to workers
+		- receives results from workers
+	- **worker**
+		- receive chunks from master
+		- process chunks
+		- send results to master
+
+--
+
+## Inspired by LISP
+
+### `Map(function, set of values)`
+
+apply `function` to each value in the set, e.g.,
+ 
+```lisp
+(map 'length '(() (a) (a b) (a b c))) → (0 1 2 3)
+```
+
+<br/>
+
+### `Reduce(function, set of values)`
+
+combine values using a binary function, e.g., 
+ 
+```lisp
+(reduce #'+ '(0 1 2 3)) → 6
+```
 
 --
 
 ## Map/Reduce Model
 
+- map step:
+	- process key/value pairs as input with a given function ...
+	- store key/value pairs as intermediate result
+- reduce step:
+	- apply function to intermediate results with the same key
+
+![Map/Reduce Model](images/MapReduce2.svg)<!-- .element: style="box-shadow:none;width:500px;" -->
+
+
+Source: Ville Tuulos, Andreas Pietzowski ([Wikimedia Commons](https://commons.wikimedia.org/wiki/File:MapReduce2.svg))
+
+<!-- .element: style="font-size:0.5em;" -->
+
 --
 
-## Example: Counting Words
+## Example: Word Count
+
+
 
 --
 
