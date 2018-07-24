@@ -2,7 +2,7 @@
 <html lang="de">
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=1600, height=900, initial-scale=1.0, maximum-scale=1.5, user-scalable=no">
+		<meta name="viewport" content="width=1024, height=768, initial-scale=1.0, maximum-scale=1.5, user-scalable=no">
 
 		<title>Introduction to Scalable Big Data Processing</title>
 
@@ -63,7 +63,7 @@ src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a> This work is licen
 
 --
 
-![Werdegang](images/antrittsvorlesung.png)<!-- .element: style="margin-top:-20px;width:900px;" -->
+![Werdegang](images/antrittsvorlesung.png)<!-- .element: style="margin-top:-120px;" -->
 
 
 --
@@ -94,7 +94,7 @@ src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a> This work is licen
 
 --
 
-![The FOUR V's of Big Data](http://www.ibmbigdatahub.com/sites/default/files/infographic_file/4-Vs-of-big-data.jpg)<!-- .element: style="margin-top:-20px;width:950px;" -->
+![The FOUR V's of Big Data](http://www.ibmbigdatahub.com/sites/default/files/infographic_file/4-Vs-of-big-data.jpg)<!-- .element: style="margin-top:-80px;" -->
 
 
 Source: [IBM Big Data Hub](http://www.ibmbigdatahub.com/sites/default/files/infographic_file/4-Vs-of-big-data.jpg)
@@ -131,7 +131,7 @@ Foundation](https://www.uschamberfoundation.org/sites/default/files/legacy/found
 
 ## Velocity
 
-![Hubert Murray, Jr., January 1966](images/murray_1966.png) <!-- .element width="1000px" -->
+![Hubert Murray, Jr., January 1966](images/murray_1966.png)
 
 Source: [Methods for satisfying the needs of the scientist and the
 engineer for scientific and technical
@@ -145,7 +145,7 @@ Murray, Jr., January 1966
 ## Volume
 
 ![How much science is there?](images/how_much_science.jpg) <!--
-.element width="850px" -->
+.element width="1000px" -->
 
 Source: [Randall Munroe](http://science.sciencemag.org/content/342/6154/58.full)
 
@@ -155,11 +155,11 @@ Source: [Randall Munroe](http://science.sciencemag.org/content/342/6154/58.full)
 
 ## Variety
 
-![Variety](images/variety.png) <!-- .element: style="box-shadow:none;width:950px;" -->
+![Variety](images/variety.png) <!-- .element: style="box-shadow:none;width:1000px;" -->
 
 --
 
-![Tracks of Birds in Movebank](images/movebank.png) <!-- .element width="950px" -->
+![Tracks of Birds in Movebank](images/movebank.png)
 
 Source: https://www.movebank.org/
 
@@ -168,14 +168,15 @@ Source: https://www.movebank.org/
 --
 
 ![Large Synoptic Survey
-Telescope](images/1280px-Large_Synoptic_Survey_Telescope_3_4_render_2013.png) <!-- .element width="750px" -->
+Telescope](images/1280px-Large_Synoptic_Survey_Telescope_3_4_render_2013.png) <!-- .element width="900px" -->
+
 Source: [LSST Project Office](https://commons.wikimedia.org/wiki/File:Large_Synoptic_Survey_Telescope_3_4_render_2013.png)
 
 <!-- .element: style="font-size:0.5em;" -->
 
 --
 
-![Four Degrees of Separation](images/fourdegrees.svg) <!-- .element width="550px" -->
+![Four Degrees of Separation](images/fourdegrees.svg) <!-- .element width="700px" -->
 
 Source: [Four Degrees of Separation](https://arxiv.org/abs/1111.4570),
 Lars Backstrom, Paolo Boldi, Marco Rosa, Johan Ugander, Sebastiano
@@ -185,7 +186,7 @@ Vigna, 2012
 
 --
 
-![LHC Tunnel](images/CERN_LHC_Tunnel1.jpg) <!-- .element width="750px" -->
+![LHC Tunnel](images/CERN_LHC_Tunnel1.jpg) <!-- .element width="900px" -->
 
 Source: [Julian Herzog](https://commons.wikimedia.org/wiki/File:CERN_LHC_Tunnel1.jpg)
 
@@ -212,9 +213,31 @@ Source: [Julian Herzog](https://commons.wikimedia.org/wiki/File:CERN_LHC_Tunnel1
 
 ## Background
 
+![Sequentially vs. Parallel](images/sequentially_vs_parallel.png)<!--
+.element style="width:20%;float:right;box-shadow:none;" -->
+
+- traditional programs run sequentially
+- parallel programming: 
+ - split tasks into smaller parts that can be executed concurrently on
+   multiple machines or CPUs
+- challenge:
+ - identify *tasks* that can run concurrently
+ - ... or *datasets* that can be processed concurrently
+ - not all problems can be (easily) parallelised
+
+<!-- .element style="width:70%;" -->
+
 --
 
 ## Parallel Programming Paradigms
+
+- Shared Memory Systems
+ - Multi-Threading
+- GPU/CUDA
+- Distributed Memory Systems / Message Passing
+ - MPI
+ - **Map/Reduce**
+ - Dremel (Apache Drill)
 
 ---
 
@@ -222,11 +245,53 @@ Source: [Julian Herzog](https://commons.wikimedia.org/wiki/File:CERN_LHC_Tunnel1
 
 --
 
-## Overview
+## Map/Reduce
+
+- Jeffrey Dean & Sanjay Ghemawat, Google, 2004
+- programming model + execution environment for data parallelism
+- developed for data-intensive applications
+- simple interface, separating *what* from *how*
+- processing of very big data (TB-PB) on thousands of nodes
+- open source implementation: **Hadoop**
+
+## Google File System
+
+![Hadoop Logo](images/Hadoop_logo.svg)<!--
+.element style="width:30%;float:right;box-shadow:none;" -->
+
+- distributed file system
+- optimised for cheap hardware
+- open source implementation: **HDFS** (Hadoop Distributed File System)
+
+<!-- .element style="width:60%;" -->
 
 --
 
 ## Ideas
+
+- inexpensive standard hardware *(instead of high-end servers)*
+- errors are expected *(and not the exception)*
+- move the program to the data *(not the other way around)*
+- read data sequentially
+- keep details from the programmer
+- scalability
+
+--
+
+## Ideas
+
+- no data dependencies
+- data can be split in equal-sized chunks
+- each process handles one chunk
+- master/worker approach:
+ - master
+  - splits data into chunks
+  - verteilt diese an Worker
+  - erhält Ergebnisse von Workern
+ - worker
+  - erhalten Datensätze von Master
+  - verarbeiten diese
+  - senden Ergebnisse  an Master
 
 --
 
@@ -281,6 +346,23 @@ Source: http://mattturck.com/bigdata2017/
 
 --
 
+## The »Big Data Zoo«
+
+![Group Work](images/People_icon_half.svg)<!--
+.element style="width:20%;float:right;box-shadow:none;" -->
+
+Form a pair and select a tool from the stack, then:
+- Research the **purpose** of the tool and which **relationships to
+  other tools** it has (*e.g., Hadoop itself is based on HDFS*).
+- Make notes on cardboard and attach them to the board below your
+  tool's name.
+- Draw relationships to other tools.
+
+
+<!-- .element style="width:70%;" -->
+
+--
+
 ## Hardware @ L3S
 
 ![Cluster](images/cluster.jpg) <!-- .element width="550px" -->
@@ -319,12 +401,26 @@ Source: [Randall Munroe, XKCD](https://xkcd.com/1425/)
 ---
 
 
+# Discussion
+
+--
+
+## What should you know after this lecture?
+
+- What is Big Data? *Volume, Velocity, Variety, Veracity*
+- Ideas behind Map/Reduce
+- Map/Reduce Programming Model
+- Limits of the Model
+- Existing Applications and Tools
+
+--
+
 <div style="float:right; width:20%;">
-  <a href="http://slides.igada.de/2018-07-05-leibniz-kolleg/"><img
+  <a href="http://slides.igada.de/2018-08-03-summerschool/"><img
   src="images/qrcode.png" alt="Link to the slides" style="box-shadow:none;margin-bottom:0;"/></a>
   
   <p style="font-size:.45em;padding-top:0px;margin-top:0px;">
-    <a href="http://slides.igada.de/2018-07-05-leibniz-kolleg/">http://slides.igada.de/2018-07-05-leibniz-kolleg/</a>
+    <a href="http://slides.igada.de/2018-08-03-summerschool/">http://slides.igada.de/2018-08-03-summerschool/</a>
   </p>
 
   <a href="https://www.bibsonomy.org/"><img src="images/postit.png" alt="www.bibsonomy.org" style="box-shadow:none;"/></a>
@@ -345,33 +441,36 @@ Source: [Randall Munroe, XKCD](https://xkcd.com/1256/)
 <!-- .element: style="width:70%;font-size:0.5em;margin-top:0px;" -->
 
 
-
-contact: [robert.jaeschke@hu-berlin.de](mailto:robert.jaeschke@hu-berlin.de)
-
-<!-- .element: style="width: 70%; float:left;" -->
-
-
 --
 
 ## Sources and Further Reading
 
-1. [The End of Theory: The Data Deluge Makes the Scientific Method
-  Obsolete](https://www.wired.com/2008/06/pb-theory/),<br/> C. Anderson,
-  *Wired*, June 2008
-2. [Significance and Challenges of Big Data
-   Research](https://doi.org/10.1016/j.bdr.2015.01.006),<br/> X. Jin,
-   B.W. Wah, X. Cheng, Y. Wang, *Big Data Research* 2(2), June 2015
-3. [The Fourth Paradigm: Data-Intensive Scientific
-   Discovery](https://doi.org/10.1109/JPROC.2011.2155130),<br/> K.M. Tolle,
-   D.S.W. Tansley, A.J.G. Hey, IEEE, July 2011
-4. [Big Data: Are We Making a Big
-  Mistake?](http://www.ft.com/cms/s/2/21a6e7d8-b479-11e3-a09a-00144feabdc0.html),
-  <br/>T. Harford, *Financial Times*, March 2014
-5. [Big Data and Science: Myths and
-   Reality](http://sites.nationalacademies.org/cs/groups/pgasite/documents/webpage/pga_152501.pdf),
-   <br/>H.V. Jagadish, October 2014
+- The slides are partially based on the following lectures:
+ - EN 600.320/420 (Randal Burns, John Hopkins University)
+ - [Distributed Systems](https://www.cs.rutgers.edu/~pxk/417/notes/)
+   (Paul Krzyzanowski, Rutgers University)
+ - Cloud Course (Jimmy Lin, University of Maryland)
+- J. Dean and S. Ghemawat. [MapReduce: Simplified Data Processing on
+  Large Clusters](https://doi.org/10.1145/1327452.1327492), *OSDI*,
+  2004
+- Tutorials:
+ - Apache Hadoop 2.5.1: http://bit.ly/1rG2nXB 
+ - Examples: http://research.google.com/pubs/pub36249.html
+ - http://developer.yahoo.com/hadoop/tutorial/module3.html
+- Further Reading:
+ - T. Harford. [Big Data: Are We Making a Big
+  Mistake?](http://www.ft.com/cms/s/2/21a6e7d8-b479-11e3-a09a-00144feabdc0.html)
+  *Financial Times*, March 2014
+ - C. Anderson. [The End of Theory: The Data Deluge Makes the
+   Scientific Method
+   Obsolete](https://www.wired.com/2008/06/pb-theory/), *Wired*, June
+   2008
+ - H. Robinson. [The Elephant was a Trojan Horse: On the Death of
+   Map-Reduce at
+   Google](http://www.the-paper-trail.org/post/2014-06-25-the-elephant-was-a-trojan-horse-on-the-death-of-map-reduce-at-google/),
+   *The Paper Trail*, June 2014
 
-<!-- .element: style="font-size:0.75em;" -->
+<!-- .element: style="font-size:0.66em;" -->
 
 
 </script>
