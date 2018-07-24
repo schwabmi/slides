@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="de">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=1600, height=900, initial-scale=1.0, maximum-scale=1.5, user-scalable=no">
+
+		<title>Introduction to Scalable Big Data Processing</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/simple.css">
+
+        <!-- adjustments for serif.css -->
+        <link rel="stylesheet" href="custom.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+			    <section data-markdown="" data-separator="^\n---\n" data-separator-vertical="^\n--\n" data-charset="utf-8">
+<script type="text/template">
+
+
+# Introduction to<br/> Scalable Big Data Processing
+
+<br />[Robert Jäschke](https://amor.cms.hu-berlin.de/~jaeschkr/)
+
+Humboldt-Universität zu Berlin<br/>L3S Research Center, Hannover<!-- .element: style="font-size:0.75em;" -->
+
+August 3, 2018
+
+<br/>
+
+<p style="font-size:0.5em;">
+<a rel="license"
+href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative
+Commons License" style="border-width:0;margin:0;vertical-align:bottom;"
+src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</p>
+
+--
+
+# Agenda
+
+<br/>
+
+1. [What is Big Data?](#/1)
+2. [Big Data in Research](#/2)
+3. [Parallel Programming](#/3)
+4. [Map/Reduce](#/4)
+5. [The »Big Data Zoo«](#/5)
+6. [Discussion](#/6)
+
+--
+
+![Werdegang](images/antrittsvorlesung.png)<!-- .element: style="margin-top:-20px;width:900px;" -->
+
+
+--
+
+# What's the **size** of the largest dataset you have **used**?
+
+--
+
+# What's the **size** of the largest dataset you have **produced/collected**?
+
+---
+
+
+# What is Big Data?
+
+--
+
+## What is Big Data?
+- **data too large to be processed with traditional applications**
+- **tasks**: collect, store, share, transfer, visualise, search,
+  retrieve, index, analyse, ...
+- **examples**: meteorology, scientific data (physics, astronomy,
+  etc.), finance, web search/mining, ...
+- **reasons**: internet of things, social web, log files, cameras, ...
+- **problem**: difficult to process with traditional software/RDBMS
+- **instead**: massive parallel software, hundreds/thousands of servers
+- **"big"**: depends on application/organisation, changes over time
+
+--
+
+![The FOUR V's of Big Data](http://www.ibmbigdatahub.com/sites/default/files/infographic_file/4-Vs-of-big-data.jpg)<!-- .element: style="margin-top:-20px;width:950px;" -->
+
+
+Source: [IBM Big Data Hub](http://www.ibmbigdatahub.com/sites/default/files/infographic_file/4-Vs-of-big-data.jpg)
+
+<!-- .element: style="font-size:0.5em;" -->
+
+--
+
+![How big is Big Data?](images/bigdata_howbig.jpg)
+![Big Data in a single day online](images/bigdata_oneday.png)
+
+Sources: 
+[U.S. Chamber of Commerce
+Foundation](https://www.uschamberfoundation.org/sites/default/files/legacy/foundation/u94/BigData1.jpg), 
+[SITA](https://www.sita.aero/)
+
+<!-- .element: style="font-size:0.5em;" -->
+
+---
+
+# Big Data in Research
+
+--
+
+## Velocity
+
+> »In every 24-hour period approximately 20,000,000 words of technical
+> information are being recorded. A reader capable of reading 1,000
+> words per minute would require 1.5 months, reading 8 hours every
+> day, to get through 1 day’s technical output, and at the end of that
+> period, he would have fallen 5.5 years behind in his reading!«
+
+--
+
+## Velocity
+
+![Hubert Murray, Jr., January 1966](images/murray_1966.png) <!-- .element width="1000px" -->
+
+Source: [Methods for satisfying the needs of the scientist and the
+engineer for scientific and technical
+information](http://www.dtic.mil/docs/citations/AD0627845), <br/>Hubert
+Murray, Jr., January 1966
+
+<!-- .element: style="font-size:0.5em;" -->
+
+--
+
+## Volume
+
+![How much science is there?](images/how_much_science.jpg) <!--
+.element width="850px" -->
+
+Source: [Randall Munroe](http://science.sciencemag.org/content/342/6154/58.full)
+
+<!-- .element: style="font-size:0.5em;" -->
+
+--
+
+## Variety
+
+![Variety](images/variety.png) <!-- .element: style="box-shadow:none;width:950px;" -->
+
+--
+
+![Tracks of Birds in Movebank](images/movebank.png) <!-- .element width="950px" -->
+
+Source: https://www.movebank.org/
+
+<!-- .element: style="font-size:0.5em;" -->
+
+--
+
+![Large Synoptic Survey
+Telescope](images/1280px-Large_Synoptic_Survey_Telescope_3_4_render_2013.png) <!-- .element width="750px" -->
+Source: [LSST Project Office](https://commons.wikimedia.org/wiki/File:Large_Synoptic_Survey_Telescope_3_4_render_2013.png)
+
+<!-- .element: style="font-size:0.5em;" -->
+
+--
+
+![Four Degrees of Separation](images/fourdegrees.svg) <!-- .element width="550px" -->
+
+Source: [Four Degrees of Separation](https://arxiv.org/abs/1111.4570),
+Lars Backstrom, Paolo Boldi, Marco Rosa, Johan Ugander, Sebastiano
+Vigna, 2012
+
+<!-- .element: style="font-size:0.5em;" -->
+
+--
+
+![LHC Tunnel](images/CERN_LHC_Tunnel1.jpg) <!-- .element width="750px" -->
+
+Source: [Julian Herzog](https://commons.wikimedia.org/wiki/File:CERN_LHC_Tunnel1.jpg)
+
+<!-- .element: style="font-size:0.5em;" -->
+
+--
+
+## Big Data in Your Field
+
+![Group Work](images/People_icon_half.svg)<!--
+.element style="width:20%;float:right;box-shadow:none;" -->
+
+- Form a group and discuss examples of big data in your field(s).
+- Consider all four V's.
+- You have **ten minutes**.
+
+<!-- .element style="width:70%;" -->
+
+---
+
+# Parallel Programming
+
+--
+
+## Background
+
+--
+
+## Parallel Programming Paradigms
+
+---
+
+# Map/Reduce
+
+--
+
+## Overview
+
+--
+
+## Ideas
+
+--
+
+## Map/Reduce Model
+
+--
+
+## Example: Counting Words
+
+--
+
+## How is the data coming to the workers?
+
+--
+
+## Applying Map/Reduce
+
+
+--
+
+## Examples
+
+
+
+---
+
+# The »Big Data Zoo«
+
+--
+
+![Big Data Landscape
+2012](images/Dave-Feinleib-2012-Big-Data-Landscape.png) 
+<!-- .element: style="width:830px;margin:0px;padding:0px;" -->
+
+<!-- .element: style="margin:0px;padding:0px;" -->
+
+Source: https://www.forbes.com/sites/davefeinleib/2012/06/19/the-big-data-landscape/
+
+<!-- .element: style="font-size:0.5em;" -->
+
+--
+
+![Big Data Landscape
+2017](images/Matt-Turck-FirstMark-2017-Big-Data-Landscape.png) 
+<!-- .element: style="width:920px;margin:0px;padding:0px;" -->
+
+<!-- .element: style="margin:0px;padding:0px;" -->
+
+Source: http://mattturck.com/bigdata2017/
+
+<!-- .element: style="font-size:0.5em;" -->
+
+--
+
+## Hardware @ L3S
+
+![Cluster](images/cluster.jpg) <!-- .element width="550px" -->
+
+- July 2013: 1 master, 8 nodes (64 CPU cores, 192 TB HDD)
+- currently: 2 master, 37 nodes (460 CPU cores, 2160 TB HDD)
+
+--
+
+
+## Complexity
+
+
+![Tasks](images/tasks_2x.png)
+<!-- .element: style="box-shadow:none;" -->
+Source: [Randall Munroe, XKCD](https://xkcd.com/1425/)
+
+<!-- .element: style="float:right;width:280px;font-size:0.5em;" -->
+
+
+--
+
+
+## Big Data in Your Field
+
+![Group Work](images/People_icon_half.svg)<!--
+.element style="width:20%;float:right;box-shadow:none;" -->
+
+- Who is already working with big data?
+- Which **tools** are you using?
+- Which **skills** do you need/did you acquire?
+
+<!-- .element style="width:70%;" -->
+
+
+---
+
+
+<div style="float:right; width:20%;">
+  <a href="http://slides.igada.de/2018-07-05-leibniz-kolleg/"><img
+  src="images/qrcode.png" alt="Link to the slides" style="box-shadow:none;margin-bottom:0;"/></a>
+  
+  <p style="font-size:.45em;padding-top:0px;margin-top:0px;">
+    <a href="http://slides.igada.de/2018-07-05-leibniz-kolleg/">http://slides.igada.de/2018-07-05-leibniz-kolleg/</a>
+  </p>
+
+  <a href="https://www.bibsonomy.org/"><img src="images/postit.png" alt="www.bibsonomy.org" style="box-shadow:none;"/></a>
+
+  <a href="http://weltliteratur.net/"><img src="images/logo_weltliteratur_953x265.png" alt="weltliteratur.net" style="box-shadow:none;"/></a>
+
+
+</div>
+
+
+![XKCD: Questions?](images/xkcd_1256.png)
+<!-- .element: style="width:100%;margin-bottom:0px;box-shadow:none;" -->
+
+<!-- .element: style="width:70%;margin-bottom:0px;margin-top:0px;" -->
+
+Source: [Randall Munroe, XKCD](https://xkcd.com/1256/)
+
+<!-- .element: style="width:70%;font-size:0.5em;margin-top:0px;" -->
+
+
+
+contact: [robert.jaeschke@hu-berlin.de](mailto:robert.jaeschke@hu-berlin.de)
+
+<!-- .element: style="width: 70%; float:left;" -->
+
+
+--
+
+## Sources and Further Reading
+
+1. [The End of Theory: The Data Deluge Makes the Scientific Method
+  Obsolete](https://www.wired.com/2008/06/pb-theory/),<br/> C. Anderson,
+  *Wired*, June 2008
+2. [Significance and Challenges of Big Data
+   Research](https://doi.org/10.1016/j.bdr.2015.01.006),<br/> X. Jin,
+   B.W. Wah, X. Cheng, Y. Wang, *Big Data Research* 2(2), June 2015
+3. [The Fourth Paradigm: Data-Intensive Scientific
+   Discovery](https://doi.org/10.1109/JPROC.2011.2155130),<br/> K.M. Tolle,
+   D.S.W. Tansley, A.J.G. Hey, IEEE, July 2011
+4. [Big Data: Are We Making a Big
+  Mistake?](http://www.ft.com/cms/s/2/21a6e7d8-b479-11e3-a09a-00144feabdc0.html),
+  <br/>T. Harford, *Financial Times*, March 2014
+5. [Big Data and Science: Myths and
+   Reality](http://sites.nationalacademies.org/cs/groups/pgasite/documents/webpage/pga_152501.pdf),
+   <br/>H.V. Jagadish, October 2014
+
+<!-- .element: style="font-size:0.75em;" -->
+
+
+</script>
+			    </section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+				width : 1200,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
