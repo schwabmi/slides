@@ -280,7 +280,8 @@ Source: [Julian Herzog](https://commons.wikimedia.org/wiki/File:CERN_LHC_Tunnel1
 
 ## Ideas
 
-- no data dependencies/data can be split into equal-size chunks
+- no data dependencies
+- data can be split into equal-size chunks
 - each process can work on a chunk
 - master/worker approach:
 	- **master**
@@ -324,7 +325,7 @@ combine values using a binary function, e.g.,
 - reduce step:
 	- apply function to intermediate results with the same key
 
-![Map/Reduce Model](images/MapReduce2.svg)<!-- .element: style="box-shadow:none;width:500px;" -->
+![Map/Reduce Model](images/MapReduce2.svg)<!-- .element: style="box-shadow:none;width:800px;" -->
 
 
 Source: Ville Tuulos, Andreas Pietzowski ([Wikimedia Commons](https://commons.wikimedia.org/wiki/File:MapReduce2.svg))
@@ -335,15 +336,67 @@ Source: Ville Tuulos, Andreas Pietzowski ([Wikimedia Commons](https://commons.wi
 
 ## Example: Word Count
 
+<!-- .element: style="margin-top:-70px;" -->
+
+![Word Count Example](images/word_count.svg)<!-- .element: style="box-shadow:none;width:900px;" -->
+
+
+```python
+def map(key, value):
+	for word in value:
+		EmitIntermediate(word, 1)
+```
+
+--
+
+## Example: Word Count
+
+<!-- .element: style="margin-top:-70px;" -->
+
+![Word Count Example](images/word_count.svg)<!-- .element: style="box-shadow:none;width:900px;" -->
+
+
+```python
+def reduce(key, values):
+	result = 0
+	for value in values:
+		result += v
+	Emit(result)
+```
 
 
 --
 
 ## How is the data coming to the workers?
 
+- with HDFS!
+- data are stored locally on the hard disks of the workers
+- worker run map step on their local data
+
+**Graphik**
+
 --
 
 ## Applying Map/Reduce
+
+
+![Group Work](images/People_icon_half.svg)<!--
+.element style="width:20%;float:right;box-shadow:none;" -->
+
+Describe the map/reduce steps for the following tasks:
+- search for a string in a large set of documents
+- count URL access frequency in web server logs
+- count incoming links to web pages in a web crawl
+- compute word co-occurrence in documents
+- build an inverted index (a word-document map)
+- sort datasets
+- create bitmap tiles of geographic maps
+
+You have **ten minutes**.
+
+<!-- .element style="width:70%;" -->
+
+
 
 
 --
@@ -388,12 +441,12 @@ Source: http://mattturck.com/bigdata2017/
 .element style="width:20%;float:right;box-shadow:none;" -->
 
 Form a pair and select a tool from the stack, then:
-- Research the **purpose** of the tool and which **relationships to
-  other tools** it has (*e.g., Hadoop itself is based on HDFS*).
-- Make notes on cardboard and attach them to the board below your
-  tool's name.
-- Draw relationships to other tools.
-
+- Research the **purpose** of the tool and its **relationships to
+  other tools** <br/>(*e.g., Hadoop itself is based on HDFS*).
+- Make **notes on cardboard** and attach them to the board next to
+  your tool's name.
+- **Draw relationships** to other tools.
+- You have **ten minutes**.
 
 <!-- .element style="width:70%;" -->
 
@@ -438,6 +491,13 @@ Source: [Randall Munroe, XKCD](https://xkcd.com/1425/)
 
 
 # Discussion
+
+--
+
+Hier evtl. noch die Folien zu "The Elephant was a Trojan Horse: On the
+Death of Map-Reduce at Google" und auf neue Entwicklungen (Dremel,
+etc.) hinweisen.
+
 
 --
 
