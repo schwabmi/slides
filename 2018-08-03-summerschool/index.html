@@ -192,19 +192,6 @@ Source: [Julian Herzog](https://commons.wikimedia.org/wiki/File:CERN_LHC_Tunnel1
 
 <!-- .element: style="font-size:0.5em;" -->
 
---
-
-## Big Data in Your Field
-
-![Group Work](images/People_icon_half.svg)<!--
-.element style="width:20%;float:right;box-shadow:none;" -->
-
-- Form a group and discuss examples of big data in your field(s).
-- Consider all four V's.
-- You have **ten minutes**.
-
-<!-- .element style="width:70%;" -->
-
 ---
 
 # Parallel Programming
@@ -373,17 +360,18 @@ def reduce(key, values):
 - data are stored locally on the hard disks of the workers
 - worker run map step on their local data
 
-**Graphik**
+![HDFS](images/hdfs.svg)<!-- .element: style="box-shadow:none;" -->
 
 --
 
-## Applying Map/Reduce
+## Homework: Applying Map/Reduce
+
+Describe the map/reduce steps for one of the following tasks:
 
 
 ![Group Work](images/People_icon_half.svg)<!--
 .element style="width:20%;float:right;box-shadow:none;" -->
 
-Describe the map/reduce steps for the following tasks:
 - search for a string in a large set of documents
 - count URL access frequency in web server logs
 - count incoming links to web pages in a web crawl
@@ -398,24 +386,34 @@ You have **ten minutes**.
 
 --
 
-## Examples
-
-
-
+## Examples 1/2
 
 - Yahoo!: Hadoop **sorts one Petabyte** in 16.25 hours and one
   Terabyte in 62 seconds (3800 nodes, May 2009)
 - Jimmy Lin: Hadoop **counts word co-occurrences** in a corpus of 2.27
   million documents in 700 seconds (38 nodes, 2010) <!-- (1.8GB
   compressed data) -->
-- Eric Baldeschwieler (Hortonworks): **Yahoo! has 42000 Hadoop
-  machines** with 180-200 Petabyte of data (July 2011) 
 - Jack Norris (MapR): *"Hadoop costs on the order of a few hundred
   dollars per terabyte to store raw data compared to something like
   $16,000 per terabyte for a data warehouse based on relational
   databases."* (2013)
+
+--
+
+## Examples 2/2
+
+
+![Cluster](images/cluster.jpg)<!--
+.element style="width:31%;float:right;box-shadow:none;" -->
+
+- Eric Baldeschwieler (Hortonworks): **Yahoo! has 42000 Hadoop
+  machines** with 180-200 Petabyte of data (July 2011) 
 - L3S: cluster with 37 nodes (460 CPU cores, 5.7 TB RAM, 720 TB HD)
   for analysing web archives (> 40TB compressed data)
+
+<!-- .element style="width:65%;" -->
+
+
 
 ---
 
@@ -459,42 +457,6 @@ Form a pair and select a tool from the stack, then:
   your tool's name.
 - **Draw relationships** to other tools.
 - You have **ten minutes**.
-
-<!-- .element style="width:70%;" -->
-
---
-
-## Hardware @ L3S
-
-![Cluster](images/cluster.jpg) <!-- .element width="550px" -->
-
-- July 2013: 1 master, 8 nodes (64 CPU cores, 192 TB HDD)
-- currently: 2 master, 37 nodes (460 CPU cores, 2160 TB HDD)
-
---
-
-
-## Complexity
-
-
-![Tasks](images/tasks_2x.png)
-<!-- .element: style="box-shadow:none;" -->
-Source: [Randall Munroe, XKCD](https://xkcd.com/1425/)
-
-<!-- .element: style="float:right;width:280px;font-size:0.5em;" -->
-
-
---
-
-
-## Big Data in Your Field
-
-![Group Work](images/People_icon_half.svg)<!--
-.element style="width:20%;float:right;box-shadow:none;" -->
-
-- Who is already working with big data?
-- Which **tools** are you using?
-- Which **skills** do you need/did you acquire?
 
 <!-- .element style="width:70%;" -->
 
