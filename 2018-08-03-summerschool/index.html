@@ -366,21 +366,21 @@ def reduce(key, values):
 
 ## Homework: Applying Map/Reduce
 
-Describe the map/reduce steps for one of the following tasks:
+Describe the map/reduce steps for (one of) the following tasks:
 
 
 ![Group Work](images/People_icon_half.svg)<!--
 .element style="width:20%;float:right;box-shadow:none;" -->
 
-- search for a string in a large set of documents
-- count URL access frequency in web server logs
-- count incoming links to web pages in a web crawl
-- compute word co-occurrence in documents
-- build an inverted index (a word-document map)
+- **search for a string** in a large set of documents
+- count **URL access frequency** in web server logs
+- count **incoming links** to web pages in a web crawl
+- compute **word co-occurrences** in documents
+- build an **inverted index** (a word-document map)
 - sort datasets
-- create bitmap tiles of geographic maps
+- create **bitmap tiles** of geographic maps
 
-You have **ten minutes**.
+<!-- You have **ten minutes**. -->
 
 <!-- .element style="width:70%;" -->
 
@@ -423,7 +423,7 @@ You have **ten minutes**.
 
 ![Big Data Landscape
 2012](images/Dave-Feinleib-2012-Big-Data-Landscape.png) 
-<!-- .element: style="width:830px;margin:0px;padding:0px;" -->
+<!-- .element: style="width:930px;margin:0px;padding:0px;" -->
 
 <!-- .element: style="margin:0px;padding:0px;" -->
 
@@ -435,7 +435,7 @@ Source: https://www.forbes.com/sites/davefeinleib/2012/06/19/the-big-data-landsc
 
 ![Big Data Landscape
 2017](images/Matt-Turck-FirstMark-2017-Big-Data-Landscape.png) 
-<!-- .element: style="width:920px;margin:0px;padding:0px;" -->
+<!-- .element: style="width:1020px;margin:0px;padding:0px;" -->
 
 <!-- .element: style="margin:0px;padding:0px;" -->
 
@@ -445,7 +445,7 @@ Source: http://mattturck.com/bigdata2017/
 
 --
 
-## The »Big Data Zoo«
+## The »Big Data Zoo« (Offline)
 
 ![Group Work](images/People_icon_half.svg)<!--
 .element style="width:20%;float:right;box-shadow:none;" -->
@@ -460,18 +460,55 @@ Form a pair and select a tool from the stack, then:
 
 <!-- .element style="width:70%;" -->
 
+--
+
+## The »Big Data Zoo« (Online)
+
+![Group Work](images/People_icon_half.svg)<!--
+.element style="width:20%;float:right;box-shadow:none;" -->
+
+Form a pair and select a tool from the stack, then:
+- Research the **purpose** of the tool and its **relationships to
+  other tools** <br/>(*e.g., Hadoop itself is based on HDFS*).
+- Add your notes on https://goo.gl/bUpNwr below your tool's name.
+- **Draw relationships** to other tools
+  <br/> (*possibly moving your tool around*).
+- You have **ten minutes**.
+
+<!-- .element style="width:70%;" -->
+
 
 ---
-
 
 # Discussion
 
 --
 
-Hier evtl. noch die Folien zu "The Elephant was a Trojan Horse: On the
-Death of Map-Reduce at Google" und auf neue Entwicklungen (Dremel,
-etc.) hinweisen.
+## Nothing's perfect ...
 
+- Map/Reduce model is limited
+- but: many string processing problems naturally map to it
+- can be used iteratively (e.g., several map steps in a row)
+
+M/R was used at Google to process web page data during crawling:
+- extract links and metadata for search
+- compute PageRank
+- that took eight hours → too long for today's dynamic web
+- goal: update the search index within seconds
+
+--
+
+## A Trojan Horse
+
+June 2014:
+
+## »The Elephant was a Trojan Horse: On the Death of Map-Reduce at Google«
+
+
+
+http://www.the-paper-trail.org/post/2014-06-25-the-elephant-was-a-trojan-horse-on-the-death-of-map-reduce-at-google/
+
+<!-- .element: style="font-size:0.5em;" -->
 
 --
 
@@ -485,11 +522,11 @@ etc.) hinweisen.
 
 --
 
-<div style="float:right; width:20%;">
+<div style="float:right; width:25%;">
   <a href="http://slides.igada.de/2018-08-03-summerschool/"><img
   src="images/qrcode.png" alt="Link to the slides" style="box-shadow:none;margin-bottom:0;"/></a>
   
-  <p style="font-size:.45em;padding-top:0px;margin-top:0px;">
+  <p style="font-size:.47em;padding-top:0px;margin-top:0px;">
     <a href="http://slides.igada.de/2018-08-03-summerschool/">http://slides.igada.de/2018-08-03-summerschool/</a>
   </p>
 
