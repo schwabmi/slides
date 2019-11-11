@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="de">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=1600, height=900, initial-scale=1.0, maximum-scale=1.5, user-scalable=no">
+
+		<title>Uncovering Hidden Treasures — Libraries and Data Science</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/simple.css">
+
+        <!-- adjustments for serif.css -->
+        <link rel="stylesheet" href="custom.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+			    <section data-markdown="" data-separator="^\n---\n" data-separator-vertical="^\n--\n" data-charset="utf-8">
+<script type="text/template">
+
+
+# Uncovering Hidden Treasures<!-- .element: style="font-size:3em;" -->
+
+## Libraries and Data Science
+
+<br />[Robert Jäschke](https://amor.cms.hu-berlin.de/~jaeschkr/)
+
+<br />Humboldt-Universität zu Berlin & Forschungszentrum L3S, Hannover (Germany)<!-- .element: style="font-size:0.75em;" -->
+
+<br />November 14, 2019
+
+
+<br/><p style="font-size:0.75em;">
+<a rel="license"
+href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative
+Commons Lizenzvertrag" style="border-width:0"
+src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a> <br/>
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</p>
+
+--
+
+## Agenda
+
+<br />
+1. [Introduction](#/1)
+2. [Example 1](#/2): Library Catalogue
+3. [Example 2](#/3): Social Media
+3. [Example 3](#/4): Newspaper Corpus
+4. [Discussion](#/6)
+
+---
+
+# Introduction and Motivation
+
+--
+
+<!-- ## Information Processing and Analytics -->
+
+![Career](images/antrittsvorlesung.png)<!-- .element: style="margin-top: -20px;" -->
+
+--
+
+## Berlin School for Library and Information Science
+
+- part of Humboldt-Universität zu Berlin
+- only such institute at a German university
+- 670 students (300 BA, 100 MA, 150 MA distance learning, 20 PhD)
+
+![IBI Building Dorotheenstraße 26,
+Berlin](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Dorotheenstra%C3%9Fe_26%2C_Berlin%2C_Germany.jpg/1024px-Dorotheenstra%C3%9Fe_26%2C_Berlin%2C_Germany.jpg)<!-- .element width="600px" -->
+
+--
+
+## And then?
+
+*Which skills and competences have positively influenced your professional career?*
+
+![Important competencies for the job](images/verbleibstudie_kompetenzen.png)<!-- .element width="800px" -->
+
+<!-- Welche Inhalte wurden zu wenig oder gar nicht behandelt? -->
+
+*What skills and competences would you have liked to have brought into
+your job?* → IT (coding, XML, MySQL, scripting, programming, web
+design, Python, data science, …)
+
+Source: [Verbleibstudie des IBI
+2011-2016](https://www.ibi.hu-berlin.de/de/bbk/abstracts/ss18/verbleibstudie), Silke
+Backhaus and Tanya Lackner, 2018
+
+--
+
+## My teaching at IBI
+
+### Bachelor
+- Information and Communications Technology
+- Information Storage and Processing
+
+<br/>
+### Master
+- Knowledge Discovery in Databases
+- Web Science
+- Data Analysis and Evaluation
+
+<br/>
+### Voluntary (Bachelor and Master)
+- monthly "programming fun" meetings
+- LISMakerLab
+
+--
+
+## "Smart Data" and "Data Science"?
+
+- skills necessary for professional career
+- *making sense of data* is becoming more and more important
+- *abundundance of data* in libraries (and elsewhere) 
+   - but lack know how to make use of them
+
+  *We are educating the next generation of information **and data** professionals.*
+
+**How can data science help libraries <br/>to make sense of their data and<br/>
+enable new services?**
+
+--
+
+## Three Examples
+
+*Hier Beispielbilder*
+
+
+---
+
+# Example 1:<br/> Exploring and Analysing the Catalogue of the German National Library
+
+<br/>
+together with [Frank
+Fischer](https://www.hse.ru/en/org/persons/182492735)<br/>
+
+Higher School of Economics, Moscow, Russia<!-- .element: style="font-size:0.75em;" -->
+
+<br/>
+complete talk: [Liebe und Tod in der Deutschen
+Nationalbibliothek](https://lehkost.github.io/slides/2018-koeln/)<br/> DHd
+Cologne, March 1, 2018
+
+--
+
+## Goals
+
+- enable the use of library catalogues to answer concrete research
+  questions <br/>(in this case from literary studies)
+- develop a simple framework to explore and analyse different aspects
+  of the catalogue
+
+--
+
+## Data
+
+
+![Deutsche Nationalibliothek](https://upload.wikimedia.org/wikipedia/commons/5/5f/DNB.svg)
+<!-- .element: style="float: right; width: 20%; margin: 0px; box-shadow: none" -->
+
+
+- DNB data service: https://www.dnb.de/datendienst – thrice a year a
+  complete RDF dump of the catalogue  (CC0 license 😊)
+- »Titeldaten der DNB«: 14,102,309 data sets and 227,212,707 tripels (»facts«)
+- **~ 180 000** novels (according to [»rdau:P60493«](http://www.rdaregistry.info/Elements/u/#P60493), label: »has other title information«)
+- authors can be linked by their GND id to other data, e.g., Wikidata
+  ```xml
+	<dcterms:creator rdf:resource="http://d-nb.info/gnd/118540238"/>
+  ```
+
+<!-- .element: style="width: 67%;" -->
+
+--
+
+## Framework
+
+![Überblick über das Framework](images/framework.svg)<!-- .element width="1040px" -->
+
+all steps are documented in a 
+[GitHub repository](https://github.com/weltliteratur/dnb)
+
+
+--
+
+## Sub data sets
+
+![temporal distribution of five different sub data sets](images/items_per_year_en.svg)<!-- .element width="640px" -->
+
+--
+
+## Most frequent nouns in titles of novels
+
+<br />
+
+| English | German | frequency |
+|:--|:--|--:|
+| love | Liebe | 3 117 |
+| man | Mann | 1 906 |
+| woman | Frau | 1 686 |
+| death | Tod | 1 537 |
+| night | Nacht | 1 505 |
+| life | Leben | 1 496 |
+| world | Welt | 1 188 |
+| house | Haus | 1 158 |
+| time | Zeit | 1 037 |
+| shadow | Schatten | 1 029 |
+
+
+--
+
+## Most frequent tri-grams in titles of novels
+
+<br />
+
+|English | German | frequency |
+|:--|:--|--:|
+| The secret of the | Das Geheimnis der | 238
+| The house of the | Das Haus der | 224
+| The man of the | Der Mann der | 189
+| The secret of the | Das Geheimnis des | 175
+| The daughter of the | Die Tochter des | 160
+| In the shadow of the | Im Schatten des | 128
+| The man in the | Der Mann im | 128
+| The song of the | Das Lied der | 125
+| The woman of the | Die Frau des | 124
+| The journey to | Die Reise nach | 108
+
+--
+
+## Extent of novels
+
+![books per number of pages](images/pages_200-400_en.svg)<!-- .element width="640px" -->
+
+<small>The number of books per number of pages in the range 200 to 400
+pages.<br/><br/>
+**Question to the audience:** There is a peak every 16 pages because … ?</small>
+
+--
+
+## Development of the extent of novels since 1913
+
+![mean number of pages per year](images/issued_pages_1913_en.svg)<!-- .element width="640px" -->
+
+<small>Seems to support a conjecture by Helge Malchow:<br/> »With the advent of the computer into the writing process, I believe that novels have become ten percent longer on average.« ([*Die Zeit* 47/2012](http://www.zeit.de/2012/47/Buecher-Internet-Literatur-Verleger/komplettansicht))</small>
+
+
+--
+
+## Lessons learned
+
+**TODO**
+
+---
+
+
+
+
+# Example 2:<br/> Researcher on Twitter
+
+<br/>
+
+together with [Marco
+Schmitt](http://www.soziologie.rwth-aachen.de/cms/Soziologie/Die-Organisationseinheit/Lehr-und-Forschungseinheiten/Technik-und-Organisation/~noaz/Dr-Marco-Schmitt/)<br/>
+
+RWTH Aachen, Germany<!-- .element: style="font-size:0.75em;" -->
+
+<br/>
+
+DOI:[10.1371/journal.pone.0179630](https://doi.org/10.1371/journal.pone.0179630)
+
+--
+
+## Status quo
+
+![Screenshot Altmetric.com](images/altmetrics.png)<!-- .element height="450px" -->
+
+<small>https://www.altmetric.com/details/1053708</small>
+
+--
+
+## Status quo
+
+
+![Screenshot Altmetric.com](images/altmetrics.png)<!-- .element height="450px" -->
+![22nd Ig Nobel Prize](images/22nd_ignobel.png)<!-- .element height="450px" -->
+
+<small>https://www.altmetric.com/details/1053708<br/>
+https://www.improbable.com/ig/2012/</small>
+
+
+--
+
+## Goals and data
+
+### in the context of altmetrics
+
+- Which content do *researchers* find interesting and how can we
+  discover it?
+- specific tweet behavior of researchers, especially computer scientists?
+- also: whom to follow? – provide orientation for young researchers
+
+<br/>
+
+### Data
+
+- freely available from
+  [Twitter-API](https://developer.twitter.com/en/docs.html): 1%
+  random sample + user data
+- [Microsoft Academic
+  Graph](https://www.microsoft.com/en-us/research/project/microsoft-academic-graph/):
+  meta data about publications, researchers, venues, etc.
+- preliminary work
+  DOI:[10.1145/2615569.2615676](https://doi.org/10.1145/2615569.2615676):
+  tweets of computer scientists
+
+--
+
+## Framework
+
+![Overview on the framework](images/twitter_methods.svg)<!-- .element width="1040px" -->
+
+|number of …|computer science|random sample|
+|:--|--:|--:|
+|users|6 694|117 907 194|
+|tweets|2 259 756|1 605 361 179|
+|tweets with a link |957 480|300 053 850|
+|links|762 918|168 881 714|
+
+
+--
+
+## Frequent domains
+
+| |computer science||random sample| |
+|--:|:--|--:|:--|--:|
+|1|youtube.com|60%|instagram.com|16%|
+|2|google.com|38%|youtube.com|14%|
+|3|twitter.com|35%|facebook.com|10%|
+|4|wordpress.com|31%|vine.co|10%|
+|5|facebook.com|31%|twitter.com|6%|
+|6|nytimes.com|31%|ask.fm|3%|
+|7|github.com|27%|unfollowers.com|2%|
+|8|wired.com|26%|uapp.ly|2%|
+|9|theguardian.com|26%|path.com|2%|
+|10|tumblr.com|26%|edu.sa|1%|
+<!--
+|11|instagram.com|1 527|24%|fllwrs.com|613 842|1%|
+|12|medium.com|1 486|24%|moi.st|608 207|1%|
+|13|slideshare.net|1 407|22%|twitpic.com|558 392|1%|
+|14|techcrunch.com|1 365|22%|soundcloud.com|505 597|1%|
+|15|blogspot.com|1 358|22%|twcm.me|486 662|1%|
+|16|vimeo.com|1 342|21%|tumblr.com|485 911|1%|
+|17|wikipedia.org|1 326|21%|swarmapp.com|409 063|1%|
+|18|wsj.com|1 147|18%|po.st|406 380|1%|
+|19|washingtonpost.com|1 126|18%|blogspot.com|403 017|1%|
+|20|github.io|1 104|18%|justunfollow.com|399 428|1%|
+-->
+
+
+<br/>
+percentage of users that tweeted links to the respective domain<!-- .element: style="font-size:0.75em;" -->
+
+--
+
+## Frequent publisher domains
+
+| |domain|odds ratio|
+|--:|:--|--:|
+|1|ceur-ws.org|156 199|
+|2|aaai.org|71 015|
+|3|nott.ac.uk|65 657|
+|4|umontreal.ca|56 202|
+|5|umd.edu|53 475|
+|6|vldb.org|47 775|
+|7|computer.org|44 520|
+|8|arizona.edu|42 967|
+|9|acm.org|40 306|
+|10|aclweb.org|40 221|
+
+<!-- .element: style="float: left;" -->
+
+| |domain|odd ratio|
+|--:|:--|--:|
+|11|gla.ac.uk|35 831|
+|12|ucsb.edu|35 439|
+|13|utah.edu|35 072|
+|14|toronto.edu|35 061|
+|15|cmu.edu|32 943|
+|16|tue.nl|31 550|
+|17|soton.ac.uk|30 688|
+|18|cornell.edu|30 148|
+|19|ucdavis.edu|29 203|
+|20|sigcomm.org|28 601|
+
+<br/>
+
+odds ratio between the fraction of users in the computer science data
+and those in the random sample that have tweeted links to the
+respective domain<!-- .element: style="font-size:0.75em;" -->
+
+--
+
+## Top publications
+
+![Top publications](images/publications.png)<!-- .element width="1040px" -->
+
+
+Publications that were frequently tweeted by computer scientists,
+sorted by their odds ratio to the random sample<!-- .element: style="font-size:0.75em;" -->
+
+
+## Lessons learned
+
+**TODO**
+
+
+---
+
+
+# Example 3:<br/> Vossian Antonomasia
+
+<br/> together with
+[Jannik Strötgen](https://people.mpi-inf.mpg.de/~jstroetge/),¹
+[Elena Krotova](http://hse-ru.academia.edu/ElenaKrotova)² and
+[Frank Fischer](https://www.hse.ru/en/org/persons/182492735)³
+<br/> 
+
+¹ Max Planck Institute for Computer Science, Saarbrücken, Germany <br/>
+² Russian Academy of Sciences, Moscow, Russia <br/>
+³ NRU Higher School of Economics, Moscow, Russia<!-- .element: style="font-size:0.75em;" -->
+
+<br/>
+
+complete talk: [Der Helmut Kohl unter den
+Brotaufstrichen](https://lehkost.github.io/slides/2017-bern/)<br/> DHd
+Bern, February 15, 2017
+
+
+--
+
+## What is a Vossian Antonomasia?
+
+![portrait of Gerhard Johannes Vossius; source: Wikimedia Commons](images/vossius.jpg)<!-- .element width="250px" -->
+
+* first described as separate phenomenon by Gerhard Johannes Vossius (1577–1649)
+* *stylistic device* to assign a specific characteristic to one person by naming another, typically more famous person
+
+image source: <a href="https://commons.wikimedia.org/wiki/File:Gerardus_Johannes_Vossius_(1577-1649),_by_Anonymous.jpg">Wikimedia Commons</a>
+
+--
+
+## Examples (1/4)
+
+<br />
+![Jim Koch, the Steve Jobs of beer](images/the-steve-jobs-of-beer_theatlantic-com.jpg)<!-- .element width="640px" -->
+
+<br />
+= Jim Koch (Source: [theatlantic.com](https://www.theatlantic.com/magazine/archive/2014/11/the-steve-jobs-of-beer/380790/), 2014)
+
+--
+
+## Examples (2/4)
+
+<br />
+![Ramazan Bashardost, the Don Quixote of Afghanistan](images/the-don-quixote-of-afghanistan.jpg)<!-- .element width="640px" -->
+
+<br />
+= Ramazan Bashardost (Source: [time.com](http://content.time.com/time/world/article/0,8599,1916541,00.html), 2009)
+
+
+--
+
+## Examples (3/4)
+
+<br />
+![James Niehues, the Michelangelo of Snow](images/the-michelangelo-of-snow.jpg)<!-- .element width="640px" -->
+
+
+<br />
+= James Niehues (Source: [denverpost.com](http://www.denverpost.com/2016/12/14/michelangelo-of-snow-mapping/), 2016)
+
+
+--
+
+## Examples (4/4)
+
+<br />
+![Nick Galis, the Michael Jordan of Greece](images/the-michael-jordan-of-greece.jpg)<!-- .element width="640px" -->
+
+
+<br />
+= Nick Galis (Source: [greekreporter.com](http://usa.greekreporter.com/2013/05/15/galis-is-the-michael-jordan-of-greece/), 2013)
+
+
+--
+
+## What is a Vossian Antonomasia?
+
+- sub-phenomenon of the classic ›Antonomasia‹
+   - kind of metonomy
+   - an epithet or phrase takes the place of a proper name
+* <span style="color:red;">source</span> → <span
+  style="color:green;">modifier/metaphor</span> → <span
+  style="color:blue;">target</span> (cf. Bergien 2013)
+* <span style="color:blue;">Nick Galis</span>, the <span
+  style="color:red;">Michael Jordan</span> of <span
+  style="color:green;">Greece</span>
+- we abbreviate ›Vossian Antonomasia‹ as **Vossanto**
+* **goal**: automatic extraction from large newspaper corpora (»New York Times«
+  1987–2007)
+
+<!--
+* entities can appear both as <span style="color:red;">source</span>
+  and <span style="color:blue;">target</span>, e.g., B. Obama (ibid.):
+  until 2011 he was mostly <span style="color:blue;">target</span> and
+  later more and more became <span style="color:red;">source</span>
+* one function of Vossanto is inculturation, i.e., we elevate the
+  <span style="color:blue;">target</span> by referencing the <span
+  style="color:red;">source</span> and the <span
+  style="color:green;">modifier</span> (an updating signal):
+  > »If we
+  > refer to Leonard Cohen as the Lord Byron of rock music, we treat a
+  > popular singer as a famous romantic poet elevating him and popular
+  > songs to a higher level of culture.«
+  (Holmqvist/Płuciennik 2010)
+* ibid. they say: **»Antonomasia is essentially humanistic and
+  anti-computational.«** – i.e., one can not understand a Vossanto
+  without cultural background knowledge
+* overall, Vossanto oscillates between explanation and ironic comment
+
+-->
+
+--
+
+## Approach
+
+1. focus on most common pattern *"the <span style="color:red;">source</span> of <span style="color:green;">modifier</span>"*:
+  ```python
+  re.compile("(\\bthe\\s+([\\w.,'-]+\\s+){1,5}?of\\b)", re.UNICODE)
+  ```
+2. extract list of Wikidata labels and aliases of [all instances of "human"](https://query.wikidata.org/#%20%20SELECT%20%3Fitem%20%3FitemLabel%20WHERE%0A%20%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP31%20wd%3AQ5%20.%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20instance%20of%20human%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20...%20include%20the%20labels%0A%20%20%20%20%20%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%0A%20%20%20%20%7D%0A%20%20%7D%0A) 
+   - match everything between *"the"* and *"of"* against this list
+3. iteratively create a [blacklist of source
+  labels](https://github.com/weltliteratur/vossanto/blob/master/theof/blacklist.tsv)
+  which are ambiguous
+   - ignore candidates where <span style="color:red;">source</span> appears in blacklist
+
+
+→ number of candidates for the year 1987 reduced from 575,711 to 2,880
+to 104
+
+--
+
+## Results: temporal distribution
+
+![temporal Vossanto distribution for NYT corpus](images/vossantos_theof_nyt.svg)<!-- .element width="70%" -->
+
+<!-- https://github.com/weltliteratur/vossanto/blob/master/theof/nyt_vossantos_over_time.svg -->
+
+Overall, 3,733 Vossanto candidates and 2,767 true Vossantos were found.
+
+--
+
+## Results: frequent sources
+
+| count | source |
+|:-----:|:------------------------: |
+| 68 | [Michael Jordan](https://www.wikidata.org/wiki/Q41421) |
+| 58 | [Rodney Dangerfield](https://www.wikidata.org/wiki/Q436386) |
+| 36 | [Babe Ruth](https://www.wikidata.org/wiki/Q213812) |
+| 32 | [Elvis Presley](https://www.wikidata.org/wiki/Q303) |
+| 31 | [Johnny Appleseed](https://www.wikidata.org/wiki/Q369675) |
+| 23 | [Bill Gates](https://www.wikidata.org/wiki/Q5284) |
+| 21 | [Pablo Picasso](https://www.wikidata.org/wiki/Q5593) |
+| 21 | [Michelangelo](https://www.wikidata.org/wiki/Q5592) |
+| 21 | [Donald Trump](https://www.wikidata.org/wiki/Q22686) |
+| 21 | [Jackie Robinson](https://www.wikidata.org/wiki/Q221048) |
+| 21 | [Madonna](https://www.wikidata.org/wiki/Q1744) |
+| 20 | [P. T. Barnum](https://www.wikidata.org/wiki/Q223766) |
+| 20 | [Tiger Woods](https://www.wikidata.org/wiki/Q10993) |
+| 18 | [Martha Stewart](https://www.wikidata.org/wiki/Q234606) |
+| 17 | [Wolfgang Amadeus Mozart](https://www.wikidata.org/wiki/Q254) |
+| 17 | [Cinderella](https://www.wikidata.org/wiki/Q13685096) |
+| 16 | [Henry Ford](https://www.wikidata.org/wiki/Q8768) |
+| 16 | [William Shakespeare](https://www.wikidata.org/wiki/Q692) |
+| 15 | [Napoleon](https://www.wikidata.org/wiki/Q517) |
+| 15 | [Adolf Hitler](https://www.wikidata.org/wiki/Q352) |
+
+
+--
+
+## Lessons learned
+
+**TODO**
+
+
+---
+
+# Bonus Example:<br/> Today in World Literature
+
+<br/>
+[Thomas Bögel](https://thboegel.de/),¹
+[Frank Fischer](https://www.hse.ru/en/org/persons/182492735),²
+[Jannik Strötgen](https://people.mpi-inf.mpg.de/~jstroetge/),³<br/>
+[Jürgen Hermes](http://www.spinfo.uni-koeln.de/jhermes.html),⁴
+[Alena Geduldig](http://www.spinfo.phil-fak.uni-koeln.de/geduldiga.html),⁴
+[Philip Schildkamp](https://phil.re/)⁴
+<br/>
+
+¹ Ruprecht-Karls-Universität Heidelberg, Germany<br/>
+² NRU Higher School of Economics, Moscow, Russia<br/>
+³ Max Planck Institute for Computer Science, Saarbrücken, Germany<br/>
+⁴ University of Köln, Germany
+<!-- .element: style="font-size:0.75em;" -->
+
+<br/>
+
+Project page:
+[Jahrestage](https://dbs.ifi.uni-heidelberg.de/research/completed-projects/jahrestage/)<br/>
+Web site: [Zitat des Tages](https://tiwoli.spinfo.uni-koeln.de/)<br/>
+Talk: [Wann findet die deutsche Literatur statt?](https://dbs.ifi.uni-heidelberg.de/fileadmin/Team/jannik/dhd2015-fischer-stroetgen-deutsche-literatur-slides.pdf)<br/>
+Blog post: [Introducing TIWOLI, a Calendar App of Fictional
+Events](http://weltliteratur.net/Introducing-TIWOLI/)
+
+--
+
+![13. Juni](images/tiwoli.png)
+<!-- .element: style="float: right; width: 37%; margin: 0px;" -->
+
+
+- Extraction of normalised temporal phrases using [HeidelTime](https://github.com/HeidelTime/heideltime/)
+- Corpus: [Gutenberg-DE Edition](http://www.projekt.gutenberg.de/) 13 DVD-ROM (October 2013)
+- overall 549 authors and 2,735 works between ca. 1510 up into the
+1940s (focus  between 1840–1930)
+
+<!-- .element: style="width: 51%;" -->
+
+![Datums- vs. Monatsnennungen](images/monate_und_tage.png)
+<!-- .element: style="width: 51%;" -->
+
+Source: [Wann findet die deutsche Literatur
+statt?](https://dbs.ifi.uni-heidelberg.de/fileadmin/Team/jannik/dhd2015-fischer-stroetgen-deutsche-literatur-slides.pdf),
+Frank Fischer and Jannik Strötgen, 2015
+
+<!-- .element: style="width: 51%" -->
+
+
+
+---
+
+# Discussion
+
+- 
+- **Treasures**: own data (e.g., catalogue) & freely available data
+  (e.g., Twitter, Wikidata)
+- interessant für
+   - **öffentliche** Bibliotheken (z.B. Exploration des Bestandes, interessante Einstiege bieten)
+   - **wissenschaftliche** Bibliotheken und **Forschungsinformationsdienste** (z.B. Themen beobachten, Empfehlungen generieren, Community-Building)
+- notwendig: grundlegende Kenntnisse in Statistik, Programmieren, Datenanalyse, etc.
+- **Teil des neuen Lehrangebots am IBI**
+
+--
+
+<div style="float:right; width:20%;">
+  <a href="https://slides.igada.de/2019-11-14-knvi_smart_humanity/"><img
+  src="images/qrcode.png" alt="Link to the Slides"/></a>
+
+  <p style="font-size:.5em;padding-top:0px;margin-top:0px;">
+    <a href="https://slides.igada.de/2019-11-14-knvi_smart_humanity/">https://slides.igada.de/2019-11-14-knvi_smart_humanity/</a>
+  </p>
+
+  <a href="https://www.bibsonomy.org/"><img src="images/postit.png" alt="www.bibsonomy.org" style="box-shadow:none;"/></a>
+
+  <a href="http://weltliteratur.net/"><img src="images/logo_weltliteratur_953x265.png" alt="weltliteratur.net" style="box-shadow:none;"/></a>
+
+
+</div>
+
+
+![XKCD: Questions?](images/xkcd_1256.png)
+<!-- .element: style="width:100%;margin-bottom:0px;" -->
+
+<!-- .element: style="width:70%;margin-bottom:0px;margin-top:0px;" -->
+
+https://xkcd.com/1256/
+
+<!-- .element: style="width:70%;font-size:0.5em;margin-top:0px;" -->
+
+
+
+- Thanks to:
+  [Marco Schmitt](http://www.soziologie.rwth-aachen.de/cms/Soziologie/Die-Organisationseinheit/Lehr-und-Forschungseinheiten/Technik-und-Organisation/~noaz/Dr-Marco-Schmitt/),
+  [Frank Fischer](https://www.hse.ru/en/org/persons/182492735),
+  [Asmelash Teka Hadgu](https://www.l3s.de/de/users/teka)
+- Contact: [robert.jaeschke@hu-berlin.de](mailto:robert.jaeschke@hu-berlin.de)
+
+<!-- .element: style="width: 70%; float:left;" -->
+
+
+
+</script>
+			    </section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
