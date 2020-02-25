@@ -50,19 +50,6 @@ src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a> <br/>
 Dieses Werk ist lizenziert unter einer <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Namensnennung 4.0 International Lizenz</a>.
 </p>
 
---
-
-<!--
-
-## Agenda
-
-<br />
-1. [Einleitung](#/1)
-2. [Beispiel 1](#/2): Bibliothekskatalog
-3. [Beispiel 2](#/3): soziale Medien
-4. [Diskussion](#/4)
-
---> 
 
 ---
 
@@ -77,6 +64,10 @@ Dieses Werk ist lizenziert unter einer <a rel="license" href="http://creativecom
 Quelle: [XKCD, Randall Munroe](https://xkcd.com/435) / CC BY-NC 2.5
 </small>
 
+
+--
+
+![BibSonomy](images/bibsonomy.png)
 
 --
 
@@ -121,13 +112,13 @@ Backhaus und Tanya Lackner, 2018
 
 ## "Data Science"?
 
-Einerseits
+Einerseits …
 - sind solche Fähigkeiten der Karriere dienlich 
-- *making sense of data* is becoming more and more important
+- wird *Wissen aus Daten zu extrahieren* immer wichtiger
 
-Andererseits
+Andererseits …
 - gibt es Daten im Überfluss an Bibliotheken (und anderswo) 
-- aber oft fehlt (noch) das Know How, diese zu nutzen
+- fehlt oft (noch) das Know How, diese zu nutzen
 
 <br/>
 
@@ -208,7 +199,7 @@ Köln, 1. März 2018
 ## Ziele und Ausgangslage
 
 - Nutzbarmachung von Katalogmetadaten zur Bearbeitung konkreter
-  literaturwissenschaftlicher Forschungsfragen
+  Forschungsfragen
 - einfaches Framework, um verschiedene Aspekte des DNB-Katalogs zu
   untersuchen
 - Datendienst der DNB: http://www.dnb.de/datendienst – dritteljährlicher Komplettabzug der Katalogdaten im RDF-Format (CC0-Lizenz 😊)
@@ -218,6 +209,14 @@ Köln, 1. März 2018
   ```xml
 	<dcterms:creator rdf:resource="http://d-nb.info/gnd/118540238"/>
   ```
+
+
+![Deutsche Nationalibliothek](images/DNB.svg)
+<!-- .element: style="box-shadow: none; height: 100px;" -->
+![Wikidata](images/Wikidata-logo-en.svg)
+<!-- .element: style="box-shadow: none; height: 100px" -->
+
+
 
 --
 
@@ -301,8 +300,9 @@ alle Schritte im
 
 ## Lessons learned
 
-- Bibliothekskataloge sind interessant und können sogar einige Überaschungen enthalten 
-- einfache Kommandozeilenwerkzeuge und Programmierkenntnisse in Python reichen
+- Bibliothekskataloge sind interessant und können sogar einige
+  Überraschungen enthalten
+- einfache Kommandozeilenwerkzeuge und Programmierkenntnisse reichen
 - reichhaltige Ergebnisse basierend auf einer nur sehr kleinen Auswahl an Metadatenfeldern
 - **Bibliotheken**: Ausgangspunkt für die interaktive Exploration des Katalogs
 
@@ -469,7 +469,7 @@ sortiert nach dem Odds Ratio der Nutzer&#42;innen-Anteile<!-- .element: style="f
 
 - frei verfügbare Daten gibt es im Überfluss
 - Einsichten in Verhalten und Trends einer spezifischen Wissenschaftscommunity
-- mögliche Ergänzungen für alternative Metriken
+- mögliche Ergänzungen für Altmetrics
 - (wissenschaftliche) **Bibliotheken:** Community-Building und Unterstützung junger Forschender
 
 
@@ -481,12 +481,14 @@ sortiert nach dem Odds Ratio der Nutzer&#42;innen-Anteile<!-- .element: style="f
 <br/> zusammen mit
 [Jannik Strötgen](https://people.mpi-inf.mpg.de/~jstroetge/),¹ 
 [Elena Krotova](http://hse-ru.academia.edu/ElenaKrotova),² 
-[Frank Fischer](https://www.hse.ru/en/org/persons/182492735)³
+[Frank Fischer](https://www.hse.ru/en/org/persons/182492735),³
+[Michel Schwab](https://www.ibi.hu-berlin.de/de/institut/personen/schwab)⁴
 <br/> 
 
 ¹ Max-Planck-Institut für Informatik, Saarbrücken <br/>
 ² Russische Akademie der Wissenschaften, Moskau <br/>
-³ NRU Higher School of Economics, Moskau<!-- .element: style="font-size:0.75em;" -->
+³ NRU Higher School of Economics, Moskau<br/>
+⁴ Humboldt-Universität zu Berlin<!-- .element: style="font-size:0.75em;" -->
 
 <br/>
 
@@ -505,7 +507,7 @@ Projektseite: [vossanto.weltliteratur.net](https://vossanto.weltliteratur.net/)
 <!-- .element width="250px" -->
 
 - Erstbeschreibung als eigenes Phänomen durch Gerhard Johannes Vossius (1577–1649)
-- *stilistisches Mittel*, um eine bestimmte Eigenschaft einer Person
+- *rhetorisches Stilmittel*, um eine bestimmte Eigenschaft einer Person
   zuzuweisen, indem man eine andere, typischerweise berühmtere, Person nennt
 
 
@@ -566,9 +568,9 @@ Bildquelle: <a href="https://commons.wikimedia.org/wiki/File:Gerardus_Johannes_V
 - <span style="color:red;">Source</span> → <span
   style="color:green;">Modifier/Metaphor</span> → <span
   style="color:blue;">Target</span> (cf. Bergien 2013)
-- <span style="color:blue;">Markus Lanz</span>, der <span
-  style="color:red;">Christian Wulff</span> des <span
-  style="color:green;">Showgeschäfts</span>
+- <span style="color:blue;">Bill Gates</span>, der <span
+  style="color:red;">Henry Ford</span> des <span
+  style="color:green;">Computerzeitalters</span>
 - wir kürzen ›Vossianische Antonomasie‹ als **Vossanto** ab
 - Ziel: automatische Extraktion aus großen Zeitungskorpora (»New York Times«
   1987–2007)
@@ -598,11 +600,14 @@ Bildquelle: <a href="https://commons.wikimedia.org/wiki/File:Gerardus_Johannes_V
 
 <!-- https://github.com/weltliteratur/vossanto/blob/master/theof/nyt_vossantos_over_time.svg -->
 
-Insgesamt wurden 3,733 Vossanto-Kandidaten und 2,767 wahre Vossantos gefunden.
+Unter den 3,733 Kandidaten wurden 2,767 Vossantos gefunden.
 
 --
 
 ## Ergebnis: häufige Sources
+
+![Top Sources](images/topsources.jpg)
+<!-- .element: style="float:right; width: 150px" -->
 
 | Anzahl | Source |
 |:-----:|:------------------------: |
@@ -626,6 +631,7 @@ Insgesamt wurden 3,733 Vossanto-Kandidaten und 2,767 wahre Vossantos gefunden.
 | 16 | [William Shakespeare](https://www.wikidata.org/wiki/Q692) |
 | 15 | [Napoleon](https://www.wikidata.org/wiki/Q517) |
 | 15 | [Adolf Hitler](https://www.wikidata.org/wiki/Q352) |
+
 
 
 --
@@ -703,10 +709,29 @@ Frank Fischer und Jannik Strötgen, 2015
 
 ## Was ist wichtig? Schlüsselstellen in der Literatur
 
+![Was ist wichtig?](images/was_ist_wichtig.png)
+<!-- .element: style="box-shadow:none" -->
+
+DFG-Projekt (04/2020 – 03/2023) zusammen mit Prof. Steffen Martus
+
 
 --
 
 ## GiNLab
+
+- Text + Data Mining im FID Germanistik (DFG-LIS, 02/2020 – 07/2021)
+- Fachportal http://www.germanistik-im-netz.de/ 
+- Analyse fachspezifischer Abfragemuster
+- Bibliographische Analyse
+- Explorationsumgebung
+
+
+![GiNLab](images/ginlab.png)
+<!-- .element: style="width: 550px;"-->
+
+--
+
+## Datierung von archivierten Webseiten
 
 
 ---
