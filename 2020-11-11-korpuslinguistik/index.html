@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="de">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=1920, height=1200, initial-scale=1.0, maximum-scale=1.5, user-scalable=no">
+
+		<title>Datenschätze selber heben: Data Science und Bibliotheken</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/simple.css">
+
+	<!-- adjustments for serif.css -->
+	<link rel="stylesheet" href="custom.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown="" data-separator="^\n---\n" data-separator-vertical="^\n--\n" data-charset="utf-8">
+<script type="text/template">
+
+
+# Der Buster Keaton der Linguistik<!-- .element: style="font-size:3em;" -->
+
+## Ansätze zur Extraktion Vossianischer Antonomasien
+
+<br />[Robert Jäschke](https://amor.cms.hu-berlin.de/~jaeschkr/) & [Michel Schwab](https://amor.cms.hu-berlin.de/~schwabmi/)
+
+<br />Humboldt-Universität zu Berlin<!-- .element: style="font-size:0.75em;" -->
+
+<br />11. November 2020
+
+
+<br/><p style="font-size:0.75em;">
+<a rel="license"
+href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative
+Commons Lizenzvertrag" style="border-width:0"
+src="images/cc.png" /></a> <br/>
+Dieses Werk ist lizenziert unter einer <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Namensnennung 4.0 International Lizenz</a>.
+</p>
+
+
+---
+
+![XKCD Comic No. 435 "Purity"](images/purity.png)
+
+
+<small>
+Quelle: [XKCD, Randall Munroe](https://xkcd.com/435) / CC BY-NC 2.5
+</small>
+
+
+--
+
+![BibSonomy](images/bibsonomy.png)
+
+--
+
+<!-- ## Information Processing and Analytics -->
+
+![Werdegang](images/antrittsvorlesung.png)<!-- .element: style="margin-top: -20px;" -->
+
+--
+
+## Institut für Bibliotheks- und Informationswissenschaft (IBI)
+
+- Humboldt-Universität zu Berlin
+- einziges universitäres Institut dieser Art in Deutschland
+- ≅ 570 Studierende (300 BA, 100 MA, 150 MA Fernstudium, 20 PhD)
+
+![IBI Gebäude Dorotheenstraße 26, Berlin](images/1024px-Dorotheenstraße_26,_Berlin,_Germany.jpg)<!-- .element width="600px" -->
+
+
+---
+
+# 1. Einleitung
+
+## Was ist eine Vossianische Antonomasie? (1/4)
+
+
+![portrait of Gerhard Johannes Vossius; source: Wikimedia Commons](images/vossius.jpg)
+<!-- .element width="250px" -->
+
+- Erstbeschreibung als eigenes Phänomen durch Gerhard Johannes Vossius (1577–1649)
+- *rhetorisches Stilmittel*, um eine bestimmte Eigenschaft einer Person
+  zuzuweisen, indem man eine andere, typischerweise berühmtere, Person nennt
+
+
+<small>
+Bildquelle: <a href="https://commons.wikimedia.org/wiki/File:Gerardus_Johannes_Vossius_(1577-1649),_by_Anonymous.jpg">Wikimedia Commons</a></small>
+
+--
+
+## Beispiele aus freier Wildbahn (1/4)
+
+<br />
+![Vittorio Hösle, der Boris Becker der Philosophie](images/der-boris-becker-der-philosophie_welt-de.jpg)<!-- .element width="640px" -->
+
+<br />
+= Vittorio Hösle (Quelle: [welt.de](https://www.welt.de/politik/ausland/article120037085/Papst-ehrt-den-Boris-Becker-der-Philosophie.html), 2013)
+
+--
+
+## Beispiele aus freier Wildbahn (2/4)
+
+<br />
+![Alice Schwarzer, der Erich Honecker des Feminismus](images/der-erich-honecker-des-feminismus_cicero-de.jpg)<!-- .element width="640px" -->
+
+<br />
+= Alice Schwarzer (Quelle: [cicero.de](http://www.cicero.de/berliner-republik/alice-schwarzer-der-erich-honecker-des-feminismus/56963), 2014)
+
+--
+
+## Beispiele aus freier Wildbahn (3/4)
+
+<br />
+![Markus Lanz, der Christian Wulff des Showgeschäfts](images/der-christian-wulff-des-showgeschaefts_spiegel-de.jpg)<!-- .element width="640px" -->
+
+<br />
+= Markus Lanz (Quelle: [spiegel.de](http://www.spiegel.de/kultur/tv/markus-lanz-auf-online-petition-folgt-wetten-dass-a-945188.html), 2014)
+
+--
+
+## Beispiele aus freier Wildbahn (4/4)
+
+<br />
+![Jim Koch, the Steve Jobs of beer](images/the-steve-jobs-of-beer_theatlantic-com.jpg)<!-- .element width="640px" -->
+
+<br />
+= Jim Koch (Quelle: [theatlantic.com](https://www.theatlantic.com/magazine/archive/2014/11/the-steve-jobs-of-beer/380790/), 2014)
+
+
+--
+
+## Was ist eine Vossianische Antonomasie? (2/4)
+
+<br />
+»Die ›Vossianische Antonomasie‹ ist […] die Setzung eines Eigennamens für ein Appellativ: der Träger des Eigennamens ist eine Person oder Sache, die in Geschichte oder Mythologie eine hervorragende Realisierung der mit dem Appellativ bezeichneten Eigenschaft war. Die hervorragende Person oder Sache ist der Typus […], der sich in der bezeichneten neuen Realisierung wiederfindet. Meist wird der Typus durch <u>ein untypologisches, aktualisierendes Signal</u> (Pronomen, Adjektiv, Genitiv), in jedem Falle durch den (sprachlichen oder situationsmäßigen) Kontext aus der typologischen Ferne in die zu bezeichnende Gegenwart geholt […].«
+
+<br />
+<small>
+Heinrich Lausberg: *Handbuch der literarischen Rhetorik. Eine Grundlegung der Literaturwissenschaft.* Band 2. München: Hueber 1960. §581, S. 301. [[diese Seite in der 3. Auflage 1990 bei Google Books](https://books.google.com/books?id=IR8ru0joFKcC&pg=PA301); Hervorhebung von uns]
+</small>
+
+--
+
+## Was ist eine Vossianische Antonomasie? (3/4)
+
+- Subphänomen der klassischen ›Antonomasie‹
+   - eine Art Metonym
+   - ein Epitheton oder eine Phrase ersetzt einen Eigennamen
+
+![Vossanto Memory](images/memory.jpg)<!-- .element width="70%" -->
+
+- <span style="color:red;">Source</span> → <span
+  style="color:green;">Modifier/Metaphor</span> → <span
+  style="color:blue;">Target</span> (vgl. Bergien 2013)
+- <span style="color:blue;">Bill Gates</span>, der <span
+  style="color:red;">Henry Ford</span> des <span
+  style="color:green;">Computerzeitalters</span>
+
+--
+
+## Was ist eine Vossianische Antonomasie? (4/4)
+
+- Begriff ›Vossianische Antonomasie‹ international kaum verwendet
+- stattdessen etwa Unterscheidung zwischen *Antonomasia<sub>₁</sub>*
+  und *Antonomasia<sub>₂</sub>*: *metonymic* vs. *metaphorical
+  antonomasia*
+
+	(hier wäre unsere Vossanto ein Spezialfall von
+	*Antonomasia<sub>₂</sub>*, nämlich wenn es um »comparisons with
+	paragons from other spheres of culture« geht: »Lyotard is a pope
+	of postmodernism, Bush is no Demosthenes; and we can buy the
+	Cadillac of vacuum cleaners.«, vgl. Holmqvist/Płuciennik 2010)
+- wir kürzen ›Vossianische Antonomasie‹ als **Vossanto** ab
+
+--
+
+## Wesen und Funktion der Vossanto
+
+- Entitäten können sowohl als <span style="color:red;">Source</span>
+  als auch als <span style="color:blue;">Target</span> auftreten,
+  z.B. Obama: bis 2011 war er vor allem <span
+  style="color:blue;">Target</span> und wurde danach immer mehr <span
+  style="color:red;">Source</span> (Bergien 2013)
+- eine Funktion der Vossanto ist die *Inkulturation*, d.h. wir erhöhen
+  das <span style="color:blue;">Target</span> durch eine Referenz auf
+  das <span style="color:red;">Source</span> und das <span
+  style="color:green;">aktualisierende Signal</span>: »If we refer to
+  Leonard Cohen as the Lord Byron of rock music, we treat a popular
+  singer as a famous romantic poet elevating him and popular songs to
+  a higher level of culture.« (Holmqvist/Płuciennik 2010)
+- ebd. heißt es aber auch: **»Antonomasia is essentially humanistic
+  and anti-computational.«** – d.h., ohne kulturelles
+  Hintergrundwissen könne man eine Vossanto nicht verstehen
+- insgesamt oszilliert die Vossanto zwischen Erläuterungshilfe und
+  ironischem Kommentar; die Erläuterungsfunktion kann aber auch
+  negative Effekte haben: »Nichts ist banaler als dieses ewige ›Ute
+  Lemper ist die Marlene Dietrich von heute‹, ›Hansjörg Felmy war der
+  deutsche Humphrey Bogart‹. Das stimmt nie.« (Fritz J. Raddatz, [*Die
+  Zeit*
+  44/2007](http://www.zeit.de/2007/44/L-Augustin/komplettansicht))
+
+
+---
+
+# 2. Methoden
+
+Ziel: automatische Extraktion aus großen Zeitungskorpora
+
+<!-- Benennung noch klären -->
+
+1. Regelbasiert ([Fischer/Jäschke 2019](https://doi.org/10.1093/llc/fqy087))
+2. binäres maschinelles Lernen ([Schwab et al. 2019](https://doi.org/10.18653/v1/D19-1647))
+3. Sequence Labeling (work in progress)
+
+Korpus: »New York Times« 1987–2007 (Sandhaus 2008)
+
+--
+
+## Regelbasiert
+
+1. Fokus auf das häufigste Muster *"the <span style="color:red;">source</span> of <span style="color:green;">modifier</span>"*:
+  ```python
+  re.compile("(\\bthe\\s+([\\w.,'-]+\\s+){1,5}?of\\b)", re.UNICODE)
+  ```
+2. Liste von Namen und Aliasen [aller Instanzen der Klasse "human"](https://query.wikidata.org/#%20%20SELECT%20%3Fitem%20%3FitemLabel%20WHERE%0A%20%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP31%20wd%3AQ5%20.%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20instance%20of%20human%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20...%20include%20the%20labels%0A%20%20%20%20%20%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%0A%20%20%20%20%7D%0A%20%20%7D%0A) aus Wikidata
+   - Abgleich des Textes zwischen *"the"* und *"of"* gegen diese Liste
+3. iterative Erstellung einer [Sperrliste von mehrdeutigen Source-Namen](https://github.com/weltliteratur/vossanto/blob/master/theof/blacklist.tsv)
+   - Ignorieren von Kandidaten, deren <span style="color:red;">Source</span> in der Sperrliste enthalten ist
+
+
+→ Anzahl der Kandidaten für das Jahr 1987 reduzierte sich von 641,432 über 5,236 zu 131
+
+--
+
+## binäres maschinelles Lernen (1/X)
+
+**Michel, hier bitte befüllen (bei Bedarf mehrere Folien)**
+
+
+--
+
+## Sequence Labelling
+
+
+**Michel, hier bitte befüllen (falls Du das überhaupt schon so
+prominent bringen möchtest)**
+
+---
+
+# 3. Ergebnisse
+
+1. Güte der Verfahren
+2. Exploration der Vossantos
+3. Beispiele
+
+--
+
+## zeitliche Verteilung
+
+![zeitliche Verteilung der Vossantos um NYT-Korpus](images/vossantos_theof_nyt.svg)<!-- .element width="70%" -->
+
+<!-- https://github.com/weltliteratur/vossanto/blob/master/theof/nyt_vossantos_over_time.svg -->
+
+Unter den 3,733 Kandidaten wurden 2,767 Vossantos gefunden.
+
+--
+
+## häufige Sources
+
+![Top Sources](images/topsources.jpg)
+<!-- .element: style="float:right; width: 150px" -->
+
+| Anzahl | Source |
+|:-----:|:------------------------: |
+| 68 | [Michael Jordan](https://www.wikidata.org/wiki/Q41421) |
+| 58 | [Rodney Dangerfield](https://www.wikidata.org/wiki/Q436386) |
+| 36 | [Babe Ruth](https://www.wikidata.org/wiki/Q213812) |
+| 32 | [Elvis Presley](https://www.wikidata.org/wiki/Q303) |
+| 31 | [Johnny Appleseed](https://www.wikidata.org/wiki/Q369675) |
+| 23 | [Bill Gates](https://www.wikidata.org/wiki/Q5284) |
+| 21 | [Pablo Picasso](https://www.wikidata.org/wiki/Q5593) |
+| 21 | [Michelangelo](https://www.wikidata.org/wiki/Q5592) |
+| 21 | [Donald Trump](https://www.wikidata.org/wiki/Q22686) |
+| 21 | [Jackie Robinson](https://www.wikidata.org/wiki/Q221048) |
+| 21 | [Madonna](https://www.wikidata.org/wiki/Q1744) |
+| 20 | [P. T. Barnum](https://www.wikidata.org/wiki/Q223766) |
+| 20 | [Tiger Woods](https://www.wikidata.org/wiki/Q10993) |
+| 18 | [Martha Stewart](https://www.wikidata.org/wiki/Q234606) |
+| 17 | [Wolfgang Amadeus Mozart](https://www.wikidata.org/wiki/Q254) |
+| 17 | [Cinderella](https://www.wikidata.org/wiki/Q13685096) |
+| 16 | [Henry Ford](https://www.wikidata.org/wiki/Q8768) |
+| 16 | [William Shakespeare](https://www.wikidata.org/wiki/Q692) |
+| 15 | [Napoleon](https://www.wikidata.org/wiki/Q517) |
+| 15 | [Adolf Hitler](https://www.wikidata.org/wiki/Q352) |
+
+
+
+---
+
+# 4. Diskussion
+
+<!-- das muss noch angepasst werden -->
+
+## Lessons Learned
+
+- einfaches aber robustes Verfahren welches von
+  Geisteswissenschaftler*innen nachvollzogen werden kann
+- größte (bis dato) bekannte Sammlung an Vossianischen Antonomasien
+- zahlreiche neue Spezialfälle, bei denen beispielsweise das <span
+  style="color:blue;">Target</span> keine Person ist (z.B. *the John
+  Barrymore of rivers*, *the Forrest Gump of high technology* oder *the
+  Marquis de Sade of word processors*)
+- **Bibliotheken**: Interesse für (Zeitungs-)Korpora wecken,
+  innovative Explorationsformen
+
+--
+
+## Ausblick
+
+- weitere Muster und Varianten ("the … among", "an … for", …)
+- Deep Learning (BLSTM, BERT, Flair, …)
+- Erkennung von <span style="color:green;">Modifier</span> und <span style="color:blue;">Target</span>
+
+
+--
+
+<div style="float:right; width:24%;">
+  <a href="https://slides.igada.de/2020-11-11-korpuslinguistik/"><img src="images/qrcode.png" alt="Link zu den Folien"/></a>
+
+  <p style="font-size:.5em;padding-top:0px;margin-top:0px;">
+	<a href="https://slides.igada.de/2020-11-11-korpuslinguistik/">https://slides.igada.de/2020-11-11-korpuslinguistik/</a>
+  </p>
+
+  <a href="https://www.bibsonomy.org/"><img src="images/postit.png" alt="www.bibsonomy.org" style="box-shadow:none;"/></a>
+
+  <a href="http://weltliteratur.net/"><img src="images/logo_weltliteratur_953x265.png" alt="weltliteratur.net" style="box-shadow:none;"/></a>
+
+
+</div>
+
+
+![XKCD: Questions?](images/xkcd_1256.png)
+<!-- .element: style="width:100%;margin-bottom:0px;" -->
+
+<!-- .element: style="width:70%;margin-bottom:0px;margin-top:0px;" -->
+
+Quelle: [XKCD, Randall Munroe](https://xkcd.com/1256) / CC BY-NC 2.5
+
+<!-- .element: style="width:70%;font-size:0.5em;margin-top:0px;" -->
+
+
+
+- Dank an: [Frank Fischer](https://www.hse.ru/en/org/persons/182492735),
+  [Elena Krotova](http://hse-ru.academia.edu/ElenaKrotova),
+  [Jannik Strötgen](https://people.mpi-inf.mpg.de/~jstroetge/)
+- Projektseite: [vossanto.weltliteratur.net](https://vossanto.weltliteratur.net/)
+- Kontakt: [robert.jaeschke@hu-berlin.de](mailto:robert.jaeschke@hu-berlin.de)
+
+<!-- .element: style="width: 70%; float:left;" -->
+
+
+--
+
+## Bibliografie
+
+<small>
+
+- Bergien, A.: Names as frames in current-day media discourse. In:
+  Felecan, O. (Hg.): Name and Naming. Proceedings of the second
+  international conference on onomastics. Cluj-Napoca: Editura
+  Mega 2013. S. 19–27.
+- Bird, S.; Klein, E.; Loper, E.: [Natural Language Processing with
+  Python.](http://www.nltk.org/book/) O’Reilly Media Inc. 2009.
+- Faruqui, M.; Pado, S.: [Training and Evaluating a German Named
+  Entity Recognizer with Semantic
+  Generalization.](http://www.manaalfaruqui.com/papers/konvens10_faruqui.pdf)
+  In: Proceedings of Konvens 2010, Saarbrücken, Germany.
+- Fischer, F.; Wälzholz, J.: [Jeder kann Napoleon sein. Vossianische
+  Antonomasie: Eine
+  Stilkunde.](http://www.umblaetterer.de/wp-content/uploads/2014/12/vossanto_fas.png)
+  In: Frankfurter Allgemeine Sonntagszeitung, Nr. 51 (21. Dezember
+  2014), S. 34.
+- Fischer, F.; Jäschke, R.: 'The Michael Jordan of
+  greatness'—Extracting Vossian antonomasia from two decades of The
+  New York Times, 1987–2007. Digital Scholarship in the Humanities,
+  35(1), 34–42, 2019. DOI: [10.1093/llc/fqy087](https://doi.org/10.1093/llc/fqy087)
+- Holmqvist K.; Płuciennik J.: Princess antonomasia and the truth: Two
+  types of metonymic relations. In: Burkhardt, A.; Nerlich, B. (Hg.):
+  Tropical Truth(s). The Epistemology of Metaphor and Other
+  Tropes. Berlin/New York: De Gruyter 2010. S. 373–381.
+  DOI: [10.1515/9783110230215](http://doi.org/10.1515/9783110230215).
+- Lausberg, H.: Handbuch der literarischen Rhetorik. Eine Grundlegung
+  der Literaturwissenschaft. Band 2. München: Hueber 1960.
+- Sandhaus, E.: [The New York Times Annotated Corpus
+  LDC2008T19](https://catalog.ldc.upenn.edu/LDC2008T19). DVD. Philadelphia:
+  Linguistic Data Consortium, 2008.
+- Schwab, M.; Jäschke, R.; Fischer, F.; Strötgen, J.: 'A Buster Keaton
+  of Linguistics': First Automated Approaches for the Extraction of
+  Vossian Antonomasia. In: Proceedings of the Conference on Empirical
+  Methods in Natural Language Processing. Association for
+  Computational Linguistics 2019. S. 6239–6244.
+  DOI: [10.18653/v1/D19-1647](https://doi.org/10.18653/v1/D19-1647)
+
+</small>
+
+</script>
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
